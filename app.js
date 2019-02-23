@@ -10,6 +10,10 @@ var controlsRouter = require('./routes/controls'); //Import routes for controls 
 
 var app = express();
 
+// add support for socket.io
+var server = require('http').Server(app); // create the http server
+var io = require('socket.io')(server); // set up websockets
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -19,6 +23,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// use the socket.io
+app.use(function(req, res, next) {
+    res.io = io;
+    req.io = io;
+    next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -40,4 +51,14 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-module.exports = app;
+
+io.on('connection', function(client) {
+    console.log('Client connected...');
+
+    client.on('click', function(data) {
+        console.log('click')
+    })
+})
+
+// exports app and server which will use in www
+module.exports = { app: app, server: server, io: io };

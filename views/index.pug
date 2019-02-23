@@ -6,3 +6,18 @@ block content
     div(class="subtitle") from #{compagny}
 
     a(href="/controls") Acess to controles
+    label(for="chk") Check
+    input(type="checkbox" id="chk")
+  script(src="/socket.io/socket.io.js")
+  script.
+    var socket = io('192.168.1.92:3000/');
+    socket.on('socketToMe', function (data) {
+      console.log(data);
+      
+    });
+    document.querySelector('#chk').addEventListener('click', function(event) {
+      socket.emit('click', '')
+    })
+    socket.emit('connection', 'user')
+        //socket.on('', function (data) {
+        //});
