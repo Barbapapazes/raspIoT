@@ -13,6 +13,7 @@ var app = express();
 // add support for socket.io
 var server = require('http').Server(app); // create the http server
 var io = require('socket.io')(server); // set up websockets
+var connection = require('./socketio/connection.js')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,13 +53,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-io.on('connection', function(client) {
-    console.log('Client connected...');
-
-    client.on('click', function(data) {
-        console.log('click')
-    })
-})
+io.on('connection', connection.newConnection)
 
 // exports app and server which will use in www
 module.exports = { app: app, server: server, io: io };
