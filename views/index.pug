@@ -12,15 +12,15 @@ block content
     input(type="checkbox" id="press")
   script(src="/socket.io/socket.io.js")
   script.
-    var socket = io('10.188.245.31:3000/');
+    var socket = io('192.168.75.8:3000/');
     socket.on('socketToMe', function (data) {
       console.log(data);
       
     });
     document.querySelector('#chk').addEventListener('click', function(event) {
-      socket.emit('click', '')
-    })
+      socket.emit('click', '');
+    });
     document.querySelector('#press').addEventListener('click', function(event) {
-      socket.emit('press', '')
-    })
-    socket.emit('connection', 'user')
+      socket.emit('press', '');
+    });
+    socket.emit('connection', 'user');

@@ -1,4 +1,4 @@
-var socket = require('./index')
+var socket = require('./indexSocketio')
 
 exports.newConnection = function(client) {
     console.log('Client connected...');
