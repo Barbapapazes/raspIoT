@@ -1,12 +1,21 @@
-var socket = io('10.188.245.31:3000/');
+var socket = io.connect('10.188.245.31:3000/');
+//socket.emit('connection', '');
+
 socket.on('socketToMe', function(data) {
     console.log(data);
 
 });
-document.querySelector('#chk').addEventListener('click', function(event) {
-    socket.emit('click', '');
+
+let checkbox = document.querySelector('#chk');
+
+checkbox.addEventListener('click', function(event) {
+    if (checkbox.checked) {
+        socket.emit('click', true);
+    } else {
+        socket.emit('click', false);
+    }
 });
-document.querySelector('#press').addEventListener('click', function(event) {
-    socket.emit('press', '');
-});
-socket.emit('connection', 'user');
+
+socket.on('click', function(data) {
+    checkbox.checked = data;
+})

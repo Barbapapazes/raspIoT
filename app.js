@@ -52,8 +52,7 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-
-io.on('connection', connection.newConnection)
+io.on('connection', connection.newConnection);
 
 // exports app and server which will use in www
 module.exports = { app: app, server: server, io: io };

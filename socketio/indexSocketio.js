@@ -1,7 +1,8 @@
 exports.click = function(data) {
-    console.log('click')
+    console.log('check: ' + data);
+    this.broadcast.emit('click', data);
 };
 
-exports.press = function(data) {
-    console.log('press');
+exports.disconnect = function(data) {
+    console.log('Client disconnected...');
 };
