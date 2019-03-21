@@ -1,4 +1,4 @@
-var socket = io.connect('10.188.245.31:3000/');
+var socket = io.connect('localhost:3000/');
 
 /*socket.on('socketToMe', function(data) {
     console.log(data);

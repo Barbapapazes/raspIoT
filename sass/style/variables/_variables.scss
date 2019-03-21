@@ -26,6 +26,9 @@ Mixins
     background-color: $color-background;
     header {
         background-color: $color-header-background;
+        .title {
+            color: $color;
+        }
     }
     a {
         color: $color;

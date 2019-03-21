@@ -47,6 +47,10 @@ Design of the main elements
 WITHOUT Color
 */
 
+// Style Header
+@import 'style/layout/header/header';
+// Style Header Responsive
+@import 'style/layout/header/headerResponsive';
 // Style Navbar
 @import 'style/layout/navbar/navbar';
 // Style NavBar Responsive
