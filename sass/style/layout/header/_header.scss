@@ -11,7 +11,13 @@ header {
     height: auto;
     .title {
         margin: 0;
-        padding: 5px;
+        padding: 8px;
         font-size: 1.4rem;
+        font-weight: 300;
+        transition: 0.2s;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.02)
+        }
     }
 }

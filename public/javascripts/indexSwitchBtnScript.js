@@ -8,5 +8,4 @@ function switchTheme() {
     this.classList.toggle('active')
     body.classList.toggle('light')
     body.classList.toggle('dark')
-
 }
