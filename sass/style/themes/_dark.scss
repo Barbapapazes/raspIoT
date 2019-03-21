@@ -1,0 +1,5 @@
+body {
+    &.dark {
+        @include theme ( $color, $color-dark-text, $color-dark-background, $color-dark-header-background, $color-dark-hover)
+    }
+}
