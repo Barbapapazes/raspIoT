@@ -1,0 +1,26 @@
+.container {
+    float: right;
+    padding: 5px;
+    &__toggle-btn {
+        width: 40px;
+        height: 20px;
+        background-color: $color-btn;
+        border-radius: 15px;
+        padding: 2px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &.active {
+            background-color: $color-btn-active;
+            &>.container__toggle-btn__inner-cercle {
+                margin-left: 20px;
+            }
+        }
+        &__inner-cercle {
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+}

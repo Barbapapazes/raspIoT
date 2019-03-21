@@ -5,7 +5,12 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+  body(class="dark")
+    block header
+    header
+      nav
+      .container
+        .container__toggle-btn
+         .container__toggle-btn__inner-cercle
     block content
-    block foot
-      p it is the foot
+    block footer

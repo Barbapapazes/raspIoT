@@ -5,8 +5,8 @@
     "scripts": {
         "devstart": "nodemon ./bin/www",
         "start": "node ./bin/www",
-        "scss-watch": "sass  --watch scss:public/stylesheets --style compressed",
-        "scss-compile": "sass --update scss:public/stylesheets --style compressed"
+        "scss-watch": "sass  --watch sass:public/stylesheets --style compressed",
+        "scss-compile": "sass --update sass:public/stylesheets --style compressed"
     },
     "dependencies": {
         "cookie-parser": "~1.4.3",
@@ -14,6 +14,7 @@
         "express": "~4.16.0",
         "http-errors": "~1.6.2",
         "morgan": "~1.9.0",
+        "node-sass-middleware": "^0.11.0",
         "onoff": "^3.2.9",
         "pug": "^2.0.3",
         "socketio": "^1.0.0"
@@ -23,6 +24,8 @@
         "sass": "^1.17.2"
     },
     "nodemonConfig": {
-        "ignore": ["socketio/data.json"]
+        "ignore": [
+            "socketio/data.json"
+        ]
     }
 }
