@@ -2,11 +2,10 @@ extends layout
 
 block content
   div(class="main")
-    div(class="subtitle") from #{compagny}
 
-    a(href="/controls") Acess to controles
-    label(for="chk") Check
-    input(type="checkbox" id="chk")
+    label(for="chk" class="bulb")
+      i.fa.fa-lightbulb.bulb__img
+      input(type="checkbox" id="chk")
 
 block append footer
   script(src="/socket.io/socket.io.js")

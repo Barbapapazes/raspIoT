@@ -3,6 +3,7 @@ Variables
 */
 
 $color: #6a9955;
+$color-bulb-light: #eeee12d3;
 // Dark theme
 $color-dark-text: white;
 $color-dark-background: #333333;
@@ -32,5 +33,12 @@ Mixins
     }
     a {
         color: $color;
+    }
+    .bulb {
+        &__img {
+            &.light {
+                color: $color-bulb-light;
+            }
+        }
     }
 }

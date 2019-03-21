@@ -1,0 +1,9 @@
+.bulb {
+    cursor: pointer;
+    #chk {
+        display: none;
+    }
+    &__img {
+        font-size: 8rem;
+    }
+}
