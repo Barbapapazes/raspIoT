@@ -8,11 +8,13 @@ $color-bulb-light: #6a9955;
 $color-dark-text: white;
 $color-dark-background: #333333;
 $color-dark-header-background: #575757;
+$color-dark-footer-background: #575757;
 $color-dark-hover: #4b4b4b;
 // Light theme
 $color-light-text: black;
 $color-light-background: white;
 $color-light-header-background: #f7f7f7;
+$color-light-footer-background: #f7f7f7;
 $color-light-hover: #e0e0e0;
 // Button
 $color-btn: grey;
@@ -22,7 +24,7 @@ $color-btn-active: #00acee;
 Mixins
 */
 
-@mixin theme ($color, $color-text, $color-background, $color-header-background, $color-hover) {
+@mixin theme ($color, $color-text, $color-background, $color-header-background, $color-footer-background, $color-hover) {
     color: $color-text;
     background-color: $color-background;
     header {
@@ -42,6 +44,7 @@ Mixins
         }
     }
     footer {
+        background-color: $color-footer-background;
         .credit {
             color: $color;
         }

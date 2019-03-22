@@ -1,5 +1,5 @@
 body {
     &.light {
-        @include theme ( $color, $color-light-text, $color-light-background, $color-light-header-background, $color-light-hover)
+        @include theme ( $color, $color-light-text, $color-light-background, $color-light-header-background, $color-light-footer-background, $color-light-hover)
     }
 }
