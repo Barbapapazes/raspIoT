@@ -64,5 +64,8 @@ app.use(function(err, req, res, next) {
 
 io.on('connection', connection.newConnection);
 
+//start the listen script on the python script, to know if he receive something from the 433MHz
+var pyshell = require('./python/script')
+
 // exports app and server which will use in www
 module.exports = { app: app, server: server, io: io };
