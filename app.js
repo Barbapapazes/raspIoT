@@ -5,6 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+// add the module to listen the data file
+let chokidar = require('chokidar')
+let fs = require('fs')
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var controlsRouter = require('./routes/controls'); //Import routes for controls panel
@@ -64,8 +68,8 @@ app.use(function(err, req, res, next) {
 
 io.on('connection', connection.newConnection);
 
-//start the listen script on the python script, to know if he receive something from the 433MHz
-var pyshell = require('./python/script')
+
+
 
 // exports app and server which will use in www
 module.exports = { app: app, server: server, io: io };

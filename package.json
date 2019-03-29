@@ -9,6 +9,7 @@
         "scss-compile": "sass --update sass:public/stylesheets --style compressed"
     },
     "dependencies": {
+        "chokidar": "^2.1.5",
         "cookie-parser": "~1.4.3",
         "debug": "~2.6.9",
         "express": "~4.16.0",
