@@ -3,12 +3,16 @@ var fs = require('fs'); // import the json file to store the stat of the button
 
 // add the module to listen the data file
 let chokidar = require('chokidar')
-let watcher = chokidar.watch('socketio/data.json', {
-    ignored: /(^|[\/\\])\../,
-    persistent: true
-})
+    /*let watcher = chokidar.watch('socketio/data.json', {
+        ignored: /(^|[\/\\])\../,
+        persistent: true
+    })*/
 
 exports.newConnection = function(client) {
+    let watcher = chokidar.watch('socketio/data.json', {
+        ignored: /(^|[\/\\])\../,
+        persistent: true
+    })
     console.log('Client connected...');
     // send data to config the web page with great data
     fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
@@ -19,7 +23,10 @@ exports.newConnection = function(client) {
     // Sockets for index.js
     client.on('click', socket.click);
 
-    client.on('disconnect', socket.disconnect)
+    client.on('disconnect', function(data) {
+        watcher.close()
+        console.log('Client disconnected...');
+    })
 
     // watch if the python change the data file || if the 433 receive a message
 
@@ -41,4 +48,5 @@ exports.newConnection = function(client) {
             }
         })
     })
+
 }

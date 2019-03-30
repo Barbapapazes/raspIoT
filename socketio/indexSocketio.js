@@ -11,6 +11,6 @@ exports.click = function(data) {
     this.broadcast.emit('click', data);
 };
 
-exports.disconnect = function(data) {
+/*exports.disconnect = function(data) {
     console.log('Client disconnected...');
-};
+};*/
