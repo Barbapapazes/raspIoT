@@ -1,0 +1,29 @@
+{
+  "python": false,
+  "bulbs": [
+    {
+      "name": "main",
+      "state": false
+    },
+    {
+      "name": "second",
+      "state": false
+    },
+    {
+      "name": "third",
+      "state": true
+    },
+    {
+      "name": "fourth",
+      "state": false
+    },
+    {
+      "name": "fifth",
+      "state": false
+    },
+    {
+      "name": "sixth",
+      "state": false
+    }
+  ]
+}

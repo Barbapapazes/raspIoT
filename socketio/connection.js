@@ -15,8 +15,9 @@ exports.newConnection = function(client) {
     })
     console.log('Client connected...');
     // send data to config the web page with great data
-    fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
+    fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
         if (err) throw err;
+        //console.log(data)
         client.emit('newConnection', data);
     });
 

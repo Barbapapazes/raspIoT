@@ -1,6 +1,8 @@
 .bulb {
+    padding: 10px;
+    margin: 20px;
     cursor: pointer;
-    #chk {
+    .chkBulb {
         display: none;
     }
     &__img {

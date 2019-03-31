@@ -27,7 +27,8 @@
     },
     "nodemonConfig": {
         "ignore": [
-            "socketio/data.json"
+            "socketio/data.json",
+            "socketio/dataInBuild.json"
         ]
     }
 }

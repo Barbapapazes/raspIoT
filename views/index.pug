@@ -3,13 +3,16 @@ extends layout
 block content
   div(class="main")
 
-    label(for="chk" class="bulb")
-      i.fa.fa-lightbulb.bulb__img
-      input(type="checkbox" id="chk")
+    - var i = 0
+    each bulb in bulbs.bulbs
+      label(for=bulb.name class="bulb")
+        i.fa.fa-lightbulb.bulb__img
+        input(type="checkbox" id=bulb.name class="chkBulb" data-num=i)
+      - i++
 
 block append footer
   script(src="/socket.io/socket.io.js")
-  script(src="/javascripts/indexSocketScript.js")
+  script(src="/javascripts/indexSocketScriptInBuild.js")
   script(src="/javascripts/indexSwitchBtnScript.js")
 
 

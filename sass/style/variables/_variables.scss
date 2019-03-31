@@ -38,6 +38,7 @@ Mixins
     }
     .bulb {
         &__img {
+            color: black;
             &.light {
                 color: $color-bulb-light;
             }
