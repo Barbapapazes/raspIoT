@@ -11,7 +11,7 @@ let fs = require('fs')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var controlsRouter = require('./routes/controls'); //Import routes for controls panel
+var editConfigRouter = require('./routes/editConfig'); //Import routes for controls panel
 
 var app = express();
 
@@ -48,7 +48,7 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/controls', controlsRouter); // Add controls routes to middleware chain
+app.use('/edit-config', editConfigRouter); // Add controls routes to middleware chain
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

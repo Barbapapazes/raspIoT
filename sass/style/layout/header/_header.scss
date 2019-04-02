@@ -20,4 +20,33 @@ header {
             transform: scale(1.02)
         }
     }
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0px;
+        padding: 0;
+        a {
+            padding: 0 10px;
+            margin: 6px 0px 0px 0px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: $duration-short;
+            &::after {
+                content: " ";
+                display: block;
+                margin-top: 0px;
+                width: 0%;
+                height: 4px;
+                transition: width linear $duration-shorter;
+            }
+            &:hover {
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }

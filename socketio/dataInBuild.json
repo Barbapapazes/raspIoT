@@ -1,57 +1,29 @@
 {
-
-    "bulbs": [
-
-        {
-
-            "name": "main",
-
-            "state": false
-
-        },
-
-        {
-
-            "name": "second",
-
-            "state": false
-
-        },
-
-        {
-
-            "name": "third",
-
-            "state": false
-
-        },
-
-        {
-
-            "name": "fourth",
-
-            "state": false
-
-        },
-
-        {
-
-            "name": "fifth",
-
-            "state": true
-
-        },
-
-        {
-
-            "name": "sixth",
-
-            "state": false
-
-        }
-
-    ],
-
-    "python": false
-
+  "bulbs": [
+    {
+      "name": "main",
+      "state": true
+    },
+    {
+      "name": "second",
+      "state": false
+    },
+    {
+      "name": "third",
+      "state": true
+    },
+    {
+      "name": "fourth",
+      "state": false
+    },
+    {
+      "name": "fifth",
+      "state": true
+    },
+    {
+      "name": "sixth",
+      "state": false
+    }
+  ],
+  "python": false
 }

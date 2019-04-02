@@ -9,16 +9,21 @@ $color-dark-text: white;
 $color-dark-background: #333333;
 $color-dark-header-background: #575757;
 $color-dark-footer-background: #575757;
-$color-dark-hover: #4b4b4b;
+$color-dark-hover: #000000;
 // Light theme
 $color-light-text: black;
 $color-light-background: white;
 $color-light-header-background: #f7f7f7;
 $color-light-footer-background: #f7f7f7;
-$color-light-hover: #e0e0e0;
+$color-light-hover: #000000;
 // Button
 $color-btn: grey;
 $color-btn-active: #00acee;
+//Transition
+$duration-shorter: 0.2s;
+$duration-short: 0.4s;
+$duration-med: 0.6s;
+$duration-long: 1s;
 
 /*
 Mixins
@@ -31,6 +36,16 @@ Mixins
         background-color: $color-header-background;
         .title {
             color: $color;
+        }
+        nav {
+            a {
+                &::after {
+                    background-color: $color;
+                }
+                &:hover {
+                    color: $color-hover;
+                }
+            }
         }
     }
     a {
