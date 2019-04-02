@@ -1,57 +1,59 @@
 var socket = io.connect(location.host);
 
-var bulbs = document.querySelectorAll('.bulb__img')
 var chks = document.querySelectorAll('.chkBulb')
-
-bulbs.forEach(element => {
-    //console.log(element)
-});
-
-chks.forEach(element => {
-    element.addEventListener('click', function(event) {
-        bulb = this.parentElement.firstElementChild
-            //console.log(this.dataset.num)
-        let data = { num: this.dataset.num, state: undefined }
-        if (this.checked) {
-            //console.log(bulb)
-            data.state = true
-            socket.emit('click', data);
-            bulb.classList.add('light')
-        } else {
-            //console.log(bulb)
-            data.state = false
-            socket.emit('click', data);
-            bulb.classList.remove('light')
-        }
-    });
-});
-
-// start the page with the gread config of each button
+    // start the page with the gread config of each button
 socket.on('newConnection', function(data) {
     data = (JSON.parse(data))
-        //console.log(data)
+
     let i = 0
     chks.forEach(chk => {
+        // take the img
         bulb = chk.parentElement.firstElementChild
-        chk.checked = data.bulbs[i].state
-            //console.log(chk.checked)
+        chk.checked = data.bulbs[i++].state
         if (chk.checked)
             bulb.classList.add('light')
-        i++
     });
-    /*if (data.state !== null) {
-        console.log('Check is: ' + data.state);
-        checkbox.checked = data.state;
-        if (data.state)
-            bulb.classList.add('light')
-    }*/
 })
 
-// wait a event from the server
+chks.forEach(element => {
+    element.addEventListener('click', function() {
+        // take the image
+        bulb = this.parentElement.firstElementChild
+            // take the data (num) which is inside the HTML tag
+        let data = { num: this.dataset.num, state: undefined }
+        if (this.checked) {
+            data.state = true
+            bulb.classList.add('light')
+        } else {
+            data.state = false
+            bulb.classList.remove('light')
+        }
+        socket.emit('click', data)
+    });
+});
+
+var bulbs = document.querySelectorAll('.bulb__img')
+
+// wait a event from the other client
 socket.on('click', function(data) {
     chks[data.num].checked = data.state
     if (chks[data.num].checked)
         bulbs[data.num].classList.add('light')
     else
         bulbs[data.num].classList.remove('light')
+})
+
+// wait event from the server
+socket.on('python', function(data) {
+    let i = 0
+    data.bulbs.forEach(element => {
+        if (element.state) {
+            bulbs[i].parentElement.lastChild.checked = true
+            bulbs[i++].classList.add('light')
+        } else {
+            bulbs[i].parentElement.lastChild.checked = false
+            bulbs[i++].classList.remove('light')
+        }
+
+    })
 })

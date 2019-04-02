@@ -1,53 +1,50 @@
 var socket = require('./indexSocketio')
-var fs = require('fs'); // import the json file to store the stat of the button
+var fs = require('fs');
 
-// add the module to listen the data file
+// add the module to listen change on files
 let chokidar = require('chokidar')
-    /*let watcher = chokidar.watch('socketio/data.json', {
-        ignored: /(^|[\/\\])\../,
-        persistent: true
-    })*/
 
 exports.newConnection = function(client) {
-    let watcher = chokidar.watch('socketio/data.json', {
-        ignored: /(^|[\/\\])\../,
-        persistent: true
-    })
     console.log('Client connected...');
-    // send data to config the web page with great data
+    // send data to config the web page
     fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
         if (err) throw err;
-        //console.log(data)
         client.emit('newConnection', data);
     });
 
-    // Sockets for index.js
-    client.on('click', socket.click);
-
-    client.on('disconnect', function(data) {
-        watcher.close()
-        console.log('Client disconnected...');
+    // initializes the watcher
+    let watcher = chokidar.watch('socketio/dataInBuild.json', {
+        ignored: /(^|[\/\\])\../,
+        persistent: true
     })
 
-    // watch if the python change the data file || if the 433 receive a message
-
-    let data
-
+    // watch if data change and send data to the client
     watcher.on('change', (path, stats) => {
-        console.log('watcher')
-        fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
+        console.log('watcher on ' + path)
+        fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
             if (err) throw err;
             data = (JSON.parse(data))
             if (data.python) {
-                client.emit('click', data.state)
+                // emit an event to apply change on client
+                client.emit('python', data)
+                    // reset the condition
                 data.python = false
-                fs.writeFile('socketio/data.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
+                    // write the file to change the condition
+                fs.writeFile('socketio/dataInBuild.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
                     if (err) throw err
                 })
             } else {
-                console.log('other change occured')
+                console.log('nothing to send')
             }
         })
     })
 
+    // listen 'click' event from client
+    client.on('click', socket.click);
+
+    // listen 'disconnect' event from client and close the listener form this client
+    client.on('disconnect', function(data) {
+        watcher.close()
+        console.log('Client disconnected...');
+    })
 }
