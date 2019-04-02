@@ -1,6 +1,6 @@
 {
     "name": "raspiot",
-    "version": "0.0.0",
+    "version": "0.0.2",
     "private": true,
     "scripts": {
         "devstart": "nodemon ./bin/www",
@@ -16,7 +16,6 @@
         "http-errors": "~1.6.2",
         "morgan": "~1.9.0",
         "node-sass-middleware": "^0.11.0",
-        "onoff": "^3.2.9",
         "pug": "^2.0.3",
         "python-shell": "^1.0.7",
         "socketio": "^1.0.0"

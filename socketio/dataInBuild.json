@@ -2,7 +2,7 @@
   "bulbs": [
     {
       "name": "main",
-      "state": true
+      "state": false
     },
     {
       "name": "second",
@@ -10,7 +10,7 @@
     },
     {
       "name": "third",
-      "state": true
+      "state": false
     },
     {
       "name": "fourth",
@@ -18,10 +18,14 @@
     },
     {
       "name": "fifth",
-      "state": true
+      "state": false
     },
     {
       "name": "sixth",
+      "state": false
+    },
+    {
+      "name": "seventh",
       "state": false
     }
   ],

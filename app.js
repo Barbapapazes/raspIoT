@@ -11,7 +11,7 @@ let fs = require('fs')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var editConfigRouter = require('./routes/editConfig'); //Import routes for controls panel
+var editConfigRouter = require('./routes/editConfig'); //Import routes for edit config
 
 var app = express();
 
