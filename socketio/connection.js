@@ -20,7 +20,7 @@ exports.newConnection = function(client) {
 
     // watch if data change and send data to the client
     watcher.on('change', (path, stats) => {
-        console.log('watcher on ' + path)
+        //console.log('watcher on ' + path)
         fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
             if (err) throw err;
             data = (JSON.parse(data))
@@ -34,7 +34,7 @@ exports.newConnection = function(client) {
                     if (err) throw err
                 })
             } else {
-                console.log('nothing to send')
+                //console.log('nothing to send')
             }
         })
     })

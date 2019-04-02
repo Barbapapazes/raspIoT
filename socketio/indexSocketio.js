@@ -10,7 +10,6 @@ exports.click = function(data) {
         if (err) throw err;
         content = JSON.parse(content)
         content.bulbs[data.num].state = data.state
-        console.log(content)
         fs.writeFile('socketio/dataInBuild.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
             if (err) throw err
         })
@@ -20,7 +19,7 @@ exports.click = function(data) {
 
 
     // send the new state to all client
-    //this.broadcast.emit('click', data);
+    this.broadcast.emit('click', data);
     //console.log(data)
     /**/
 };
