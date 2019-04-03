@@ -1,8 +1,10 @@
 extends layout
 
 block content
-  div(class="main")
-    p EDIT CONFIG
+  .main
+    .choice
+      a(href="/edit-config/add") add
+      a(href="/edit-config/delete") delete
 
 block append footer
   script(src="/javascripts/indexSwitchBtnScript.js")

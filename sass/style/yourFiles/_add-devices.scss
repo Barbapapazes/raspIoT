@@ -1,0 +1,35 @@
+.add-device {
+    width: 30%;
+    min-width: 400px;
+    font-size: 1.3rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        .name-device,
+        .state-device,
+        .button {
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            margin: 10px;
+            input,
+            select {
+                height: 35px;
+                padding: 6px;
+                font-size: 1.07rem;
+            }
+        }
+        label {
+            font-weight: 200;
+        }
+        button {
+            font-size: 1.3rem;
+            padding: 5px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    }
+}

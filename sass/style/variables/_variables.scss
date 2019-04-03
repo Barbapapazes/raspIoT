@@ -13,8 +13,8 @@ $color-dark-hover: #000000;
 // Light theme
 $color-light-text: black;
 $color-light-background: white;
-$color-light-header-background: #f7f7f7;
-$color-light-footer-background: #f7f7f7;
+$color-light-header-background: #ebebeb;
+$color-light-footer-background: #ebebeb;
 $color-light-hover: #000000;
 // Button
 $color-btn: grey;
@@ -24,12 +24,14 @@ $duration-shorter: 0.2s;
 $duration-short: 0.4s;
 $duration-med: 0.6s;
 $duration-long: 1s;
+// Border
+$border: 1px solid $color;
 
 /*
 Mixins
 */
 
-@mixin theme ($color, $color-text, $color-background, $color-header-background, $color-footer-background, $color-hover) {
+@mixin theme ($color, $color-text, $color-background, $color-header-background, $color-footer-background, $color-hover, $border) {
     color: $color-text;
     background-color: $color-background;
     header {
@@ -50,12 +52,43 @@ Mixins
     }
     a {
         color: $color;
+        &::after {
+            background-color: $color;
+        }
+        &:hover {
+            color: $color-hover;
+        }
     }
     .bulb {
         &__img {
             color: black;
             &.light {
                 color: $color-bulb-light;
+            }
+        }
+    }
+    .add-device {
+        fieldset {
+            color: $color;
+            border: 1px solid black;
+            input,
+            select {
+                background-color: $color-header-background;
+                border: none;
+                color: $color-text;
+            }
+            .button {
+                button {
+                    color: $color-text;
+                    border: $border;
+                    background-color: $color-background;
+                    font-weight: 700;
+                    &:hover {
+                        color: $color-hover;
+                        border: $border;
+                        background-color: $color;
+                    }
+                }
             }
         }
     }

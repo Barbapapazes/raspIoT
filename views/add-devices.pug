@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    .main
+        form(action="", method="post", class="add-device")
+            fieldset
+                legend Add a Device
+                .name-device
+                    label(for="nameinput") 
+                        | Name of the Device
+                        sup *
+                    input(type="text", name="nameinput", id="nameinput", placeholder="My Device", required autofocus)
+
+                .state-device
+                    label(for="stateinput")
+                        | Choose the initial state
+                        sup *
+                    select(name="stateinput", id="stateinput" required)
+                        option(value="true") On
+                        option(value="false" selected) Off
+                
+                .button
+                    button(type="submit") Add
+                    button(type="reset") Delete
+
+
+block append footer
+  script(src="/javascripts/indexSwitchBtnScript.js")
+
+
