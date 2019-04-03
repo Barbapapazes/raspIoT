@@ -1,6 +1,19 @@
 extends layout
 
 block content
+    //.msgStatus.sucess
+        ul
+            li error
+            li second error
+    if messages 
+            if (sucess)
+                .msgStatus.sucess
+                    p!= messages
+            else
+                .msgStatus.error
+                    ul
+                        for message in messages
+                            li!= message.msg
     .main
         form(action="", method="post", class="add-device")
             fieldset

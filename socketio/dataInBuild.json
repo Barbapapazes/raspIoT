@@ -2,23 +2,23 @@
   "bulbs": [
     {
       "name": "main",
-      "state": false
+      "state": true
     },
     {
       "name": "second",
-      "state": false
+      "state": true
     },
     {
       "name": "third",
-      "state": false
+      "state": true
     },
     {
       "name": "fourth",
-      "state": false
+      "state": true
     },
     {
       "name": "fifth",
-      "state": false
+      "state": true
     },
     {
       "name": "sixth",
@@ -26,7 +26,7 @@
     },
     {
       "name": "seventh",
-      "state": false
+      "state": true
     }
   ],
   "python": false

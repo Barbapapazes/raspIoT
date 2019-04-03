@@ -16,6 +16,14 @@ $color-light-background: white;
 $color-light-header-background: #ebebeb;
 $color-light-footer-background: #ebebeb;
 $color-light-hover: #000000;
+// Error
+$color-error-text: red;
+$color-error-background: rgba(255, 0, 0, 0.137);
+$border-error: 1px solid rgba(255, 0, 0, 0.562);
+// Sucess
+$color-sucess-text: green;
+$color-sucess-background: rgba(0, 128, 0, 0.178);
+$border-sucess: 1px solid rgba(0, 128, 0, 0.329);
 // Button
 $color-btn: grey;
 $color-btn-active: #00acee;
@@ -26,12 +34,13 @@ $duration-med: 0.6s;
 $duration-long: 1s;
 // Border
 $border: 1px solid $color;
+$border-radius: 10px;
 
 /*
 Mixins
 */
 
-@mixin theme ($color, $color-text, $color-background, $color-header-background, $color-footer-background, $color-hover, $border) {
+@mixin theme ($color, $color-text, $color-background, $color-header-background, $color-footer-background, $color-hover, $border, $border-radius, $color-error-text, $color-error-background, $border-error, $color-sucess-text, $color-sucess-background, $border-sucess) {
     color: $color-text;
     background-color: $color-background;
     header {
@@ -48,6 +57,20 @@ Mixins
                     color: $color-hover;
                 }
             }
+        }
+    }
+    .msgStatus {
+        &.error {
+            color: $color-error-text;
+            background-color: $color-error-background;
+            border: $border-error;
+            border-radius: $border-radius;
+        }
+        &.sucess {
+            color: $color-sucess-text;
+            background-color: $color-sucess-background;
+            border: $border-sucess;
+            border-radius: $border-radius;
         }
     }
     a {
