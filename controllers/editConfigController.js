@@ -1,3 +1,5 @@
+let fs = require('fs')
+let content = require('../socketio/dataInBuild.json')
 const { body, check, oneOf, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
@@ -40,9 +42,11 @@ exports.editConfig_add_post = [
             return
         } else {
             // Data from form is valid.
-
-            console.log(req.body.nameinput)
-            console.log(req.body.stateinput)
+            content.bulbs[content.bulbs.length] = { name: req.body.nameinput, state: JSON.parse(req.body.stateinput) }
+            console.log(content)
+            fs.writeFile('socketio/dataInBuild.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
+                if (err) throw err
+            })
             res.render('add-devices', {
                 title: 'RaspIoT',
                 compagny: 'MULTI-PRISES',

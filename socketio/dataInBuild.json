@@ -1,33 +1,7 @@
 {
-  "bulbs": [
-    {
-      "name": "main",
-      "state": true
-    },
-    {
-      "name": "second",
-      "state": true
-    },
-    {
-      "name": "third",
-      "state": true
-    },
-    {
-      "name": "fourth",
-      "state": true
-    },
-    {
-      "name": "fifth",
-      "state": true
-    },
-    {
-      "name": "sixth",
-      "state": true
-    },
-    {
-      "name": "seventh",
-      "state": true
-    }
-  ],
-  "python": false
+    "bulbs": [{
+        "name": "main",
+        "state": true
+    }],
+    "python": false
 }
