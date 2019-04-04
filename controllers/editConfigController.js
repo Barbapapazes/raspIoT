@@ -1,5 +1,4 @@
 let fs = require('fs')
-let content = require('../socketio/dataInBuild.json')
 const { body, check, oneOf, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
@@ -42,17 +41,22 @@ exports.editConfig_add_post = [
             return
         } else {
             // Data from form is valid.
-            content.bulbs[content.bulbs.length] = { name: req.body.nameinput, state: JSON.parse(req.body.stateinput) }
-            console.log(content)
-            fs.writeFile('socketio/dataInBuild.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
-                if (err) throw err
-            })
-            res.render('add-devices', {
-                title: 'RaspIoT',
-                compagny: 'MULTI-PRISES',
-                sucess: true,
-                messages: "device correctly added"
-            })
+            fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, content) {
+                if (err) throw err;
+                content = JSON.parse(content)
+                content.bulbs[content.bulbs.length] = { name: req.body.nameinput, state: JSON.parse(req.body.stateinput) }
+                console.log(content)
+                fs.writeFile('socketio/dataInBuild.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
+                    if (err) throw err
+                })
+                res.render('add-devices', {
+                    title: 'RaspIoT',
+                    compagny: 'MULTI-PRISES',
+                    sucess: true,
+                    messages: "device correctly added"
+                })
+            });
+
         }
     }
 
@@ -61,7 +65,15 @@ exports.editConfig_add_post = [
 
 // Display the delete menu
 exports.editConfig_delete_get = function(req, res) {
-    res.send('not implemented')
+    fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
+        if (err) throw err;
+        res.render('delete-devices', {
+            title: 'RaspIoT',
+            compagny: 'MULTI-PRISES',
+            bulbs: JSON.parse(data)
+        })
+    });
+
 }
 
 // Handle the post request to delete device

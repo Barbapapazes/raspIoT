@@ -9,3 +9,7 @@ exports.index = function(req, res, next) {
         res.render('index', { title: 'RaspIoT', compagny: 'MULTI-PRISES', bulbs: JSON.parse(data) });
     });
 }
+
+exports.about = (req, res) => {
+    res.send('about is not implemented')
+}

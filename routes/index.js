@@ -7,4 +7,6 @@ var fs = require('fs')
 /* GET home page. */
 router.get('/', indexController.index);
 
+router.get('/about', indexController.about);
+
 module.exports = router;

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    .main
+        ul
+            for bulb in bulbs.bulbs
+                li #{bulb.name} | #{bulb.state}
+
+block append footer
+  script(src="/javascripts/indexSwitchBtnScript.js")
