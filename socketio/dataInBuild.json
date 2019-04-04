@@ -1,7 +1,13 @@
 {
-    "bulbs": [{
-        "name": "main",
-        "state": true
-    }],
-    "python": false
+  "bulbs": [
+    {
+      "name": "main",
+      "state": true
+    },
+    {
+      "name": "second",
+      "state": true
+    }
+  ],
+  "python": false
 }

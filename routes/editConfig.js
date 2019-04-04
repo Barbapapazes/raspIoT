@@ -3,7 +3,7 @@ var router = express.Router();
 
 var editConfig_controller = require('../controllers/editConfigController')
 
-// GET request to the control panel to add or delete devices
+// GET request to the control panel (add or delete devices)
 router.get('/', editConfig_controller.index);
 
 // GET request to add devices

@@ -93,7 +93,7 @@ Mixins
     .add-device {
         fieldset {
             color: $color;
-            border: 1px solid black;
+            border: 1px solid $color-header-background;
             input,
             select {
                 background-color: $color-header-background;
