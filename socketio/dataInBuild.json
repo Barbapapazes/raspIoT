@@ -1,35 +1,11 @@
 {
   "bulbs": [
     {
-      "name": "1",
+      "name": "bulb one",
       "state": false
     },
     {
-      "name": "2",
-      "state": true
-    },
-    {
-      "name": "3",
-      "state": true
-    },
-    {
-      "name": "4",
-      "state": true
-    },
-    {
-      "name": "5",
-      "state": true
-    },
-    {
-      "name": "6",
-      "state": true
-    },
-    {
-      "name": "7",
-      "state": true
-    },
-    {
-      "name": "8",
+      "name": "bulb two",
       "state": true
     }
   ],

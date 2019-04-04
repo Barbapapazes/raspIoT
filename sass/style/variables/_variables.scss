@@ -115,6 +115,19 @@ Mixins
             }
         }
     }
+    .delete {
+        hr {
+            border: 1px solid $color-header-background;
+        }
+        &__device {
+            text-transform: capitalize;
+            &__trash {
+                &:hover {
+                    color: $color;
+                }
+            }
+        }
+    }
     footer {
         background-color: $color-footer-background;
         .credit {

@@ -1,0 +1,18 @@
+.delete {
+    list-style: none;
+    margin: 0;
+    padding: 20px 0;
+    width: 50%;
+    &__device {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.4rem;
+        &__trash {
+            font-size: 2rem;
+            padding: 5px;
+            cursor: pointer;
+        }
+    }
+}

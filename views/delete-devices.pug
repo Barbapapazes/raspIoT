@@ -2,9 +2,14 @@ extends layout
 
 block content
     .main
-        ul
+        ul.delete
+            - var i =0
             for bulb in bulbs.bulbs
-                li #{bulb.name} | #{bulb.state}
+                li.delete__device
+                    | #{bulb.name}
+                    i(class="fas fa-trash-alt delete__device__trash" data-num=i)
+                hr
+                - i++
 
 block append footer
   script(src="/javascripts/indexSwitchBtnScript.js")
