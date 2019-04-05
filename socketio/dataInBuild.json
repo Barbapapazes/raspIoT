@@ -6,7 +6,7 @@
     },
     {
       "name": "bulb two",
-      "state": true
+      "state": false
     }
   ],
   "python": false

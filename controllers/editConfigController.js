@@ -77,6 +77,43 @@ exports.editConfig_delete_get = function(req, res) {
 }
 
 // Handle the post request to delete device
-exports.editConfig_delete_post = function(req, res) {
-    res.send('not implemented')
-}
+exports.editConfig_delete_post = [
+    // Validate that the delete field exist.
+    body('deleteinput').exists().withMessage('Please try again !'),
+
+    // Sanitize (trim and escape) the delete field.
+    sanitizeBody('deleteinput').trim().escape(),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+        const errors = validationResult(req)
+
+        if (!errors.isEmpty()) {
+            // There are errors. Render the form again with sanitized values/error messages.
+            fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
+                if (err) throw err;
+                res.render('delete-devices', {
+                    title: 'RaspIoT',
+                    compagny: 'MULTI-PRISES',
+                    bulbs: JSON.parse(data),
+                    messages: errors.array()
+                })
+            });
+            return
+        } else {
+            // Data from form is valid.
+            console.log(req.body.deleteinput)
+
+            fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
+                if (err) throw err;
+                res.render('delete-devices', {
+                    title: 'RaspIoT',
+                    compagny: 'MULTI-PRISES',
+                    bulbs: JSON.parse(data),
+                    sucess: true,
+                    messages: "Correctly removed"
+                })
+            });
+        }
+    }
+]

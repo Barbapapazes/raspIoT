@@ -122,6 +122,9 @@ Mixins
         &__device {
             text-transform: capitalize;
             &__trash {
+                &.selected {
+                    color: $color;
+                }
                 &:hover {
                     color: $color;
                 }
