@@ -11,17 +11,20 @@ block content
                         for message in messages
                             li!= message.msg
     .main
-        form(action="", method="post", class="delete")
-            - var i = 0
-            for bulb in bulbs.bulbs
-                .delete__device
-                    p #{bulb.name}
-                    label(for=i)
-                        i(class="fas fa-trash-alt delete__device__trash" id="trash")
-                    input(type="checkbox", name="deleteinput", id=i, value=i)
-                    - i++
-                hr
-            button(type="submit") delete
+        if(bulbs.bulbs[0] != undefined)
+            form(action="", method="post", class="delete")
+                - var i = 0
+                for bulb in bulbs.bulbs
+                    .delete__device
+                        p #{bulb.name}
+                        label(for=i)
+                            i(class="fas fa-trash-alt delete__device__trash" id="trash")
+                        input(type="checkbox", name="deleteinput", id=i, value=i)
+                        - i++
+                    hr
+                button(type="submit") delete
+        else 
+            .empty Nothing to show here ;-(
 
 block append footer
   script(src="/javascripts/indexSwitchBtnScript.js")

@@ -1,13 +1,4 @@
 {
-  "bulbs": [
-    {
-      "name": "bulb one",
-      "state": false
-    },
-    {
-      "name": "bulb two",
-      "state": false
-    }
-  ],
+  "bulbs": [],
   "python": false
 }

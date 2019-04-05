@@ -103,16 +103,44 @@ exports.editConfig_delete_post = [
         } else {
             // Data from form is valid.
             console.log(req.body.deleteinput)
-
+            if (req.body.deleteinput.constructor !== Array)
+                req.body.deleteinput = [req.body.deleteinput]
+            remove = req.body.deleteinput
             fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
                 if (err) throw err;
-                res.render('delete-devices', {
-                    title: 'RaspIoT',
-                    compagny: 'MULTI-PRISES',
-                    bulbs: JSON.parse(data),
-                    sucess: true,
-                    messages: "Correctly removed"
+                data = JSON.parse(data)
+                let i = 0
+                remove.forEach(element => {
+                    element -= i++
+                        data.bulbs.splice(element, 1)
+                });
+                /*let i = 0,
+                    nb = 0,
+                    tmpData = []
+                data.bulbs.forEach(element => {
+                    if (i != req.body.deleteinput) {
+                        tmpData[nb++] = element
+                    }
+                    i++
+                });
+                data.bulbs = tmpData*/
+                console.log(data)
+                fs.writeFile('socketio/dataInBuild.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
+                    if (err) throw err
                 })
+                setTimeout(() => {
+                    fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
+                        if (err) throw err;
+                        console.log(data.bulbs)
+                        res.render('delete-devices', {
+                            title: 'RaspIoT',
+                            compagny: 'MULTI-PRISES',
+                            bulbs: JSON.parse(data),
+                            sucess: true,
+                            messages: "Correctly removed"
+                        })
+                    });
+                }, 20);
             });
         }
     }

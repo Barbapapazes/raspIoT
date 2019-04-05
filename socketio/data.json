@@ -1,6 +1,12 @@
 {
-  "id": "1",
-  "name": "check",
-  "python": false,
-  "state": false
+    "bulbs": [{
+            "name": "bulb one",
+            "state": false
+        },
+        {
+            "name": "bulb two",
+            "state": false
+        }
+    ],
+    "python": false
 }
