@@ -11,6 +11,7 @@ exports.index = function(req, res) {
 /*************
  * Controllers for add path
  *************/
+
 // Display the add menu
 exports.editConfig_add_get = function(req, res) {
     res.render('add-devices', { title: 'RaspIoT', compagny: 'MULTI-PRISES' });
@@ -35,48 +36,74 @@ exports.editConfig_add_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        if (!errors.isEmpty()) {
-            // There are errors. Render the form again with sanitized values/error messages.
-            res.render('add-devices', {
-                title: 'RaspIoT',
-                compagny: 'MULTI-PRISES',
-                messages: errors.array()
+        let isInside
+        fs.readFile('socketio/data.json', 'utf-8', function(err, file) {
+            if (err) throw err
+
+            file = JSON.parse(file)
+            let tab = file.bulbs.map(val => {
+                return val.name
             })
-            return
-        } else {
-            // Data from form is valid.
-            fs.readFile('socketio/data.json', 'utf-8', function(err, content) {
-                if (err) throw err
+            for (let index = 0; index < tab.length; index++) {
+                const element = tab[index];
+                if (req.body.nameinput == element)
+                    isInside = true
+            }
 
-                content = JSON.parse(content)
-                content.bulbs[content.bulbs.length] = {
-                    name: req.body.nameinput,
-                    state: JSON.parse(req.body.stateinput)
-                }
 
-                // for the watcher in the index
-                content.addDevices = true
 
-                console.log(content)
-
-                fs.writeFile('socketio/data.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
-                    if (err) throw err
-                })
-
-                setTimeout(() => {
+            if (!errors.isEmpty() || isInside) {
+                // There are errors. Render the form again with sanitized values/error messages.
+                if (!errors.isEmpty()) {
                     res.render('add-devices', {
                         title: 'RaspIoT',
                         compagny: 'MULTI-PRISES',
-                        sucess: true,
-                        messages: "device correctly added"
+                        messages: errors.array()
                     })
-                }, 20)
-            })
+                    return
+                } else {
+                    res.render('add-devices', {
+                        title: 'RaspIoT',
+                        compagny: 'MULTI-PRISES',
+                        messages: [{ msg: "Already Use !" }]
+                    })
+                    return
+                }
 
-        }
+            } else {
+                // Data from form is valid.
+                fs.readFile('socketio/data.json', 'utf-8', function(err, content) {
+                    if (err) throw err
+
+                    content = JSON.parse(content)
+
+                    content.bulbs[content.bulbs.length] = {
+                        name: req.body.nameinput,
+                        state: JSON.parse(req.body.stateinput)
+                    }
+
+                    // for the watcher in the index
+                    content.addDevices = true
+
+                    console.log(content)
+
+                    fs.writeFile('socketio/data.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
+                        if (err) throw err
+                    })
+
+                    setTimeout(() => {
+                        res.render('add-devices', {
+                            title: 'RaspIoT',
+                            compagny: 'MULTI-PRISES',
+                            sucess: true,
+                            messages: "device correctly added"
+                        })
+                    }, 20)
+                })
+
+            }
+        })
     }
-
-
 ]
 
 /*************

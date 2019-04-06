@@ -6,7 +6,11 @@
     },
     {
       "name": "two",
-      "state": false
+      "state": true
+    },
+    {
+      "name": "Three",
+      "state": true
     }
   ],
   "python": false,
