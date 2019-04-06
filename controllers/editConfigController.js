@@ -45,7 +45,7 @@ exports.editConfig_add_post = [
             return
         } else {
             // Data from form is valid.
-            fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, content) {
+            fs.readFile('socketio/data.json', 'utf-8', function(err, content) {
                 if (err) throw err
 
                 content = JSON.parse(content)
@@ -59,7 +59,7 @@ exports.editConfig_add_post = [
 
                 console.log(content)
 
-                fs.writeFile('socketio/dataInBuild.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
+                fs.writeFile('socketio/data.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
                     if (err) throw err
                 })
 
@@ -84,7 +84,7 @@ exports.editConfig_add_post = [
  *************/
 // Display the delete menu
 exports.editConfig_delete_get = function(req, res) {
-    fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
+    fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
         if (err) throw err
 
         res.render('delete-devices', {
@@ -109,7 +109,7 @@ exports.editConfig_delete_post = [
 
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values/error messages.
-            fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
+            fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
                 if (err) throw err
 
                 res.render('delete-devices', {
@@ -129,7 +129,7 @@ exports.editConfig_delete_post = [
                 remove = [remove]
             console.log(remove)
 
-            fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
+            fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
                 if (err) throw err
 
                 data = JSON.parse(data)
@@ -146,12 +146,12 @@ exports.editConfig_delete_post = [
 
                 console.log(data)
 
-                fs.writeFile('socketio/dataInBuild.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
+                fs.writeFile('socketio/data.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
                     if (err) throw err
                 })
 
                 setTimeout(() => {
-                    fs.readFile('socketio/dataInBuild.json', 'utf-8', function(err, data) {
+                    fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
                         if (err) throw err
 
                         res.render('delete-devices', {
