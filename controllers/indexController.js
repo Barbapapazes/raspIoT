@@ -10,6 +10,7 @@ exports.index = function(req, res, next) {
     });
 }
 
+// about of the site
 exports.about = (req, res) => {
     res.send('about is not implemented')
 }

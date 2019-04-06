@@ -1,15 +1,6 @@
 extends layout
 
 block content
-    if messages 
-            if (sucess)
-                .msgStatus.sucess
-                    p!= messages
-            else
-                .msgStatus.error
-                    ul
-                        for message in messages
-                            li!= message.msg
     .main
         if(bulbs.bulbs[0] != undefined)
             form(action="", method="post", class="delete")
@@ -26,6 +17,6 @@ block content
         else 
             .empty Nothing to show here ;-(
 
-block append footer
+block scripts
   script(src="/javascripts/indexSwitchBtnScript.js")
   script(src='/javascripts/deleteDevices.js')

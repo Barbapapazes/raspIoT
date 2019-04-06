@@ -1,15 +1,6 @@
 extends layout
 
 block content
-    if messages 
-            if (sucess)
-                .msgStatus.sucess
-                    p!= messages
-            else
-                .msgStatus.error
-                    ul
-                        for message in messages
-                            li!= message.msg
     .main
         form(action="", method="post", class="add-device")
             fieldset
@@ -33,7 +24,7 @@ block content
                     button(type="reset") Erase
 
 
-block append footer
+block scripts
   script(src="/javascripts/indexSwitchBtnScript.js")
 
 

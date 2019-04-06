@@ -28,6 +28,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// middleware to compile scss
 app.use('/stylesheets', sassMiddleware({
     src: path.join(__dirname, 'sass'),
     dest: path.join(__dirname, 'public/stylesheets'),
@@ -67,9 +68,6 @@ app.use(function(err, req, res, next) {
 });
 
 io.on('connection', connection.newConnection);
-
-
-
 
 // exports app and server which will use in www
 module.exports = { app: app, server: server, io: io };

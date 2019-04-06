@@ -1,26 +1,49 @@
 doctype html
 html
+  // Head
   head
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.8.0/css/all.css")
-    
+  
+  // Body
   body(class="dark")
+    // Header
     block header
     header
       h1.title
-        a(href="/") Welcome to #{title}
+        a(href="/") #{title}
       nav
         a(href="/edit-config") edit-config
       .container
         .container__toggle-btn
          .container__toggle-btn__inner-cercle
+
+    block messages
+      if messages 
+            // Flash messages
+            if (sucess)
+                .msgStatus.sucess
+                    p!= messages
+            else
+                .msgStatus.error
+                    ul
+                        for message in messages
+                            li!= message.msg
+    
+    // Content
     block content
+
+    // Footer
     block footer
       footer
         a(href="/about", class="credit") by #{compagny}
+
+    // Scripts
+    block scripts
+    
 
       
     
