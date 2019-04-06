@@ -1,5 +1,14 @@
 {
-  "bulbs": [],
+  "bulbs": [
+    {
+      "name": "one",
+      "state": true
+    },
+    {
+      "name": "two",
+      "state": false
+    }
+  ],
   "python": false,
   "addDevices": false,
   "deleteDevices": false

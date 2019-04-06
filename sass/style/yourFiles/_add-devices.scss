@@ -1,13 +1,14 @@
 .add-device {
-    width: 30%;
-    min-width: 400px;
+    width: 35%;
+    min-width: 340px;
     font-size: 1.3rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    word-spacing: 0px;
     fieldset {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        margin: 0px;
         .name-device,
         .state-device,
         .button {

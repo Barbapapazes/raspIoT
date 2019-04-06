@@ -35,6 +35,24 @@ $duration-long: 1s;
 // Border
 $border: 1px solid $color;
 $border-radius: 10px;
+// Mixins
+@mixin underscore($height) {
+    transition: $duration-short;
+    &::after {
+        content: " ";
+        display: block;
+        margin-top: 0px;
+        width: 0%;
+        height: $height;
+        transition: width linear $duration-shorter;
+    }
+    &:hover {
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
 
 /*
 Mixins
@@ -100,19 +118,6 @@ Mixins
                 border: none;
                 color: $color-text;
             }
-            .button {
-                button {
-                    color: $color-text;
-                    border: $border;
-                    background-color: $color-background;
-                    font-weight: 700;
-                    &:hover {
-                        color: $color-hover;
-                        border: $border;
-                        background-color: $color;
-                    }
-                }
-            }
         }
     }
     .delete {
@@ -120,7 +125,6 @@ Mixins
             border: 1px solid $color-header-background;
         }
         &__device {
-            text-transform: capitalize;
             &__trash {
                 &.selected {
                     color: $color;
@@ -128,6 +132,19 @@ Mixins
                 &:hover {
                     color: $color;
                 }
+            }
+        }
+    }
+    .button {
+        button {
+            color: $color-text;
+            border: $border;
+            background-color: $color-background;
+            font-weight: 700;
+            &:hover {
+                color: $color-hover;
+                border: $border;
+                background-color: $color;
             }
         }
     }

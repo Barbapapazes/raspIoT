@@ -1,8 +1,11 @@
 .delete {
-    width: 40%;
-    input {
-        display: none;
-    }
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    min-width: 340px;
+    font-size: 1.3rem;
+    word-spacing: 0px;
+    text-transform: capitalize;
     &__device {
         display: flex;
         flex-direction: row;
@@ -12,6 +15,23 @@
         &__trash {
             font-size: 2rem;
             padding: 5px;
+            cursor: pointer;
+        }
+    }
+    hr {
+        width: 100%
+    }
+    input {
+        display: none;
+    }
+    .button {
+        display: flex;
+        flex-direction: column;
+        button {
+            text-transform: capitalize;
+            font-size: 1.3rem;
+            padding: 5px;
+            margin: 10px;
             cursor: pointer;
         }
     }
