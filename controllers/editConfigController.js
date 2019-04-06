@@ -45,6 +45,7 @@ exports.editConfig_add_post = [
                 if (err) throw err;
                 content = JSON.parse(content)
                 content.bulbs[content.bulbs.length] = { name: req.body.nameinput, state: JSON.parse(req.body.stateinput) }
+                content.addDevices = true
                 console.log(content)
                 fs.writeFile('socketio/dataInBuild.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
                     if (err) throw err
@@ -114,16 +115,7 @@ exports.editConfig_delete_post = [
                     element -= i++
                         data.bulbs.splice(element, 1)
                 });
-                /*let i = 0,
-                    nb = 0,
-                    tmpData = []
-                data.bulbs.forEach(element => {
-                    if (i != req.body.deleteinput) {
-                        tmpData[nb++] = element
-                    }
-                    i++
-                });
-                data.bulbs = tmpData*/
+                data.deleteDevices = true
                 console.log(data)
                 fs.writeFile('socketio/dataInBuild.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
                     if (err) throw err

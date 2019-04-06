@@ -33,8 +33,26 @@ exports.newConnection = function(client) {
                 fs.writeFile('socketio/dataInBuild.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
                     if (err) throw err
                 })
-            } else {
-                //console.log('nothing to send')
+            } else if (data.addDevices) {
+                console.log("device added")
+                data.addDevices = false
+                fs.writeFile('socketio/dataInBuild.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
+                    if (err) throw err
+                })
+                setTimeout(() => {
+                    client.emit('addDevices')
+                }, 20);
+
+            } else if (data.deleteDevices) {
+                console.log("device deleted")
+                data.deleteDevices = false
+                fs.writeFile('socketio/dataInBuild.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
+                    if (err) throw err
+                })
+                setTimeout(() => {
+                    client.emit('deleteDevices')
+                }, 20);
+
             }
         })
     })

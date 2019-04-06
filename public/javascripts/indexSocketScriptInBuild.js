@@ -57,3 +57,11 @@ socket.on('python', function(data) {
 
     })
 })
+
+socket.on('addDevices', () => {
+    window.location.reload()
+})
+
+socket.on('deleteDevices', () => {
+    window.location.reload()
+})
