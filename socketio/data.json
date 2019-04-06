@@ -1,19 +1,11 @@
 {
   "bulbs": [
     {
-      "name": "one",
-      "state": true
-    },
-    {
-      "name": "two",
-      "state": true
-    },
-    {
-      "name": "Three",
-      "state": true
+      "name": "three",
+      "state": false
     }
   ],
   "python": false,
-  "addDevices": false,
-  "deleteDevices": false
+  "addDevices": true,
+  "deleteDevices": true
 }

@@ -50,8 +50,6 @@ exports.editConfig_add_post = [
                     isInside = true
             }
 
-
-
             if (!errors.isEmpty() || isInside) {
                 // There are errors. Render the form again with sanitized values/error messages.
                 if (!errors.isEmpty()) {
@@ -72,34 +70,30 @@ exports.editConfig_add_post = [
 
             } else {
                 // Data from form is valid.
-                fs.readFile('socketio/data.json', 'utf-8', function(err, content) {
+
+                file.bulbs[file.bulbs.length] = {
+                    name: req.body.nameinput,
+                    state: JSON.parse(req.body.stateinput)
+                }
+
+                // for the watcher in the index
+                file.addDevices = true
+
+                console.log(file)
+
+                fs.writeFile('socketio/data.json', JSON.stringify(file, null, 2), 'utf-8', function(err) {
                     if (err) throw err
-
-                    content = JSON.parse(content)
-
-                    content.bulbs[content.bulbs.length] = {
-                        name: req.body.nameinput,
-                        state: JSON.parse(req.body.stateinput)
-                    }
-
-                    // for the watcher in the index
-                    content.addDevices = true
-
-                    console.log(content)
-
-                    fs.writeFile('socketio/data.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
-                        if (err) throw err
-                    })
-
-                    setTimeout(() => {
-                        res.render('add-devices', {
-                            title: 'RaspIoT',
-                            compagny: 'MULTI-PRISES',
-                            sucess: true,
-                            messages: "device correctly added"
-                        })
-                    }, 20)
                 })
+
+                setTimeout(() => {
+                    res.render('add-devices', {
+                        title: 'RaspIoT',
+                        compagny: 'MULTI-PRISES',
+                        sucess: true,
+                        messages: "device correctly added"
+                    })
+                }, 20)
+
 
             }
         })
