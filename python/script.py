@@ -1,6 +1,8 @@
 import json
 import time
 
+time.sleep(0.02)
+
 with open('../socketio/data.json') as json_data:
     content = json.load(json_data)
     for bulb in content["bulbs"]:

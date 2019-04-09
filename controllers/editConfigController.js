@@ -172,16 +172,12 @@ exports.editConfig_delete_post = [
                 })
 
                 setTimeout(() => {
-                    fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
-                        if (err) throw err
-
-                        res.render('delete-devices', {
-                            title: 'RaspIoT',
-                            compagny: 'MULTI-PRISES',
-                            bulbs: JSON.parse(data),
-                            sucess: true,
-                            messages: "Correctly removed"
-                        })
+                    res.render('delete-devices', {
+                        title: 'RaspIoT',
+                        compagny: 'MULTI-PRISES',
+                        bulbs: data,
+                        sucess: true,
+                        messages: "Correctly removed"
                     })
                 }, 20)
             })
