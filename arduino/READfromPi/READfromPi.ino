@@ -10,7 +10,7 @@ void setup()
 }
 void loop()
 {
-  while (Serial.available())  {
+  if(Serial.available())  {
     incomingByte = (Serial.read() - '0');
     Serial.print("Read is ");
     Serial.println(incomingByte);
@@ -23,6 +23,7 @@ void loop()
         digitalWrite(PIN, LOW);
       }
     }
+    incomingByte = -1;
   }
   delay(10);
 }
