@@ -9,7 +9,7 @@ exports.click = function(data) {
         args: ['a']
     };
 
-    PythonShell.run('./python/writeToArduino.py', null, function(err, results) {
+    PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
         if (err) throw err;
         // results is an array consisting of messages collected during execution
         console.log('script done!');
