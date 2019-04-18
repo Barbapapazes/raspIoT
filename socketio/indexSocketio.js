@@ -3,10 +3,10 @@ let { PythonShell } = require('python-shell')
 
 exports.click = function(data) {
 
-    console.log(data.name)
+    console.log(data.num)
     let options = {
         mode: 'text',
-        args: [data.name]
+        args: [data.num]
     };
 
     PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
