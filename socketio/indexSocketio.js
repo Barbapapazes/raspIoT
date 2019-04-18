@@ -1,5 +1,5 @@
 var fs = require('fs')
-import { PythonShell } from 'python-shell';
+let { PythonShell } = require('python-shell')
 
 exports.click = function(data) {
 
@@ -9,7 +9,7 @@ exports.click = function(data) {
         args: ['a']
     };
 
-    PythonShell.run('writeToArduino.py', options, function(err, results) {
+    PythonShell.run('./python/writeToArduino.py', null, function(err, results) {
         if (err) throw err;
         // results is an array consisting of messages collected during execution
         console.log('script done!');
