@@ -10,6 +10,7 @@ void loop()
 {
   while (Serial.available())  {
     incomingByte = Serial.read();
+    Serial.println(incomingByte);
     if(incomingByte == 1) {
             digitalWrite(12, HIGH);   // turn the LED on (HIGH is the voltage level)
       delay(1000);                       // wait for a second
