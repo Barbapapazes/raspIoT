@@ -1,15 +1,15 @@
 {
-  "addDevices": false, 
+  "addDevices": false,
   "bulbs": [
     {
-      "name": "one", 
+      "name": "one",
       "state": false
-    }, 
+    },
     {
-      "name": "four", 
-      "state": false
+      "name": "four",
+      "state": true
     }
-  ], 
-  "deleteDevices": false, 
-  "python": true
+  ],
+  "deleteDevices": false,
+  "python": false
 }

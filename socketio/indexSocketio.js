@@ -1,6 +1,19 @@
-var fs = require('fs');
+var fs = require('fs')
+import { PythonShell } from 'python-shell';
 
 exports.click = function(data) {
+
+    console.log(data)
+    let options = {
+        mode: 'text',
+        args: ['a']
+    };
+
+    PythonShell.run('writeToArduino.py', options, function(err, results) {
+        if (err) throw err;
+        // results is an array consisting of messages collected during execution
+        console.log('script done!');
+    });
 
     // update the data file when a client click on a bulb
     fs.readFile('socketio/data.json', 'utf-8', function(err, content) {
