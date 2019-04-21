@@ -26,9 +26,7 @@ void loop () {
         for(int i = 0; i < 3; i++)
         {
             vwc.sendInt(incomingByte);
-            delay(10);
         }
-        delay(20);
     }
 }
 
