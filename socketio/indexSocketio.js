@@ -6,7 +6,7 @@ exports.click = function(data) {
     console.log(data.num)
     let options = {
         mode: 'text',
-        args: [1]
+        args: [data.num]
     };
 
     PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
