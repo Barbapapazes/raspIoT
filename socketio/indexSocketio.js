@@ -3,17 +3,20 @@ let { PythonShell } = require('python-shell')
 
 exports.click = function(data) {
 
+    // send the new state to all client
+    this.broadcast.emit('click', data);
+
     console.log(data.num)
     let options = {
         mode: 'text',
         args: [data.num]
-    };
+    }
 
     PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
         if (err) throw err;
         // results is an array consisting of messages collected during execution
         console.log('script done!');
-    });
+    })
 
     // update the data file when a client click on a bulb
     fs.readFile('socketio/data.json', 'utf-8', function(err, content) {
@@ -26,8 +29,4 @@ exports.click = function(data) {
             if (err) throw err
         })
     })
-
-    // send the new state to all client
-    this.broadcast.emit('click', data);
-
-};
+}
