@@ -1,38 +1,52 @@
-#include <VWComm.h>
+/**
+ * Exemple de code pour la bibliothèque VirtualWire – Serveur d'envoi de structure
+ */
+ //D11
+
 #include <VirtualWire.h>
 
-#define PIN 12
-const int receive_pin=11; // Rx data to D11
-byte b; // byte to hold received values
-int i;
-String dt; // string to use with VWComm
-VWComm vwc; // create an object to use with VWComm
+typedef struct {
+  int commande;
+  int valeur;
+} MaStructure;
 
-void setup()
-{
-  vw_set_rx_pin(receive_pin);
-  vw_setup(2000); // data Rx rate (bits per sec)
-  vw_rx_start(); // start the receiver running
-  pinMode(PIN, OUTPUT);
-  digitalWrite(PIN, LOW);
-  Serial.begin(9600); // initialise serial output
-  Serial.println("Starting...");
-}
-void loop()
-{
-  dt = vwc.dataType(); // wait for and identify data
-  if (dt == "B") { // code ‘B’ indicates ‘byte’
-    b = vwc.readByte();
-    Serial.print("Byte received: ");
-    Serial.println(b);
-  } else if (dt == "I") {
-    i = vwc.readInt();
-    Serial.print("Int received: ");
-    Serial.println(i);
-    if (i == 0 || i == 1)
-      digitalWrite(PIN, i); 
-  } else {
-    Serial.println("Data type not recognised!");
+void setup() {
+  Serial.begin(9600);
+
+  // Initialisation de la bibliothèque VirtualWire
+  // Vous pouvez changez les broches RX/TX/PTT avant vw_setup() si nécessaire
+  vw_setup(2000);
+  vw_rx_start(); // On peut maintenant recevoir des messages
+
+  for (int i = 2; i < 6; i++) {
+    pinMode(i, OUTPUT);
+    digitalWrite(i, LOW);
   }
-  Serial.print("");
+  
+  Serial.println("Go !"); 
+}
+
+void loop() {
+  MaStructure message;
+  byte taille_message = sizeof(MaStructure);
+
+  /* 
+   La variable "taille_message" doit impérativement être remise à 
+   la taille de la structure avant de pouvoir recevoir un message. 
+   Le plus simple est d'utiliser une variable locale pour ne pas
+   avoir à réassigner la valeur à chaque début de loop().
+   */
+
+  // On attend de recevoir un message
+  vw_wait_rx();
+
+  if (vw_get_message((byte *) &message, &taille_message)) {
+    // On copie le message, qu'il soit corrompu ou non
+    digitalWrite(message.commande + 2, message.valeur);
+
+    Serial.print("commande="); // Affiche le message
+    Serial.print(message.commande);
+    Serial.print(" valeur=");
+    Serial.println(message.valeur);
+  }
 }
