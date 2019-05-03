@@ -6,7 +6,7 @@ import time    # to manage time
 # For Linux
 #ser = serial.Serial('/dev/ttyUSB0', 9600)
 # For Windows
-ser = serial.Serial('COM8', 9600)
+ser = serial.Serial('COM7', 9600)
 
 # We write in the serial console of the Arduino the values passed in parameter during the execution of the command
 

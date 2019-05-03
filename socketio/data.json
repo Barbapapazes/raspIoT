@@ -3,15 +3,15 @@
   "bulbs": [
     {
       "name": "one",
-      "state": true
+      "state": false
     },
     {
       "name": "three",
-      "state": true
+      "state": false
     },
     {
       "name": "Two",
-      "state": true
+      "state": false
     },
     {
       "name": "Three",

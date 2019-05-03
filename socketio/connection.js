@@ -21,59 +21,58 @@ exports.newConnection = function(client) {
 
     // watch if data change and send data to the client
     watcher.on('change', (path, stats) => {
+        setTimeout(() => {
+            fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
+                if (err) throw err
 
-        fs.readFile('socketio/data.json', 'utf-8', function(err, data) {
-            if (err) throw err
+                data = (JSON.parse(data))
 
-            data = (JSON.parse(data))
+                if (data.python) {
+                    console.log('python script')
 
-            if (data.python) {
-                console.log('python script')
+                    // emit an event to apply change on client
+                    client.emit('python', data)
 
-                // emit an event to apply change on client
-                client.emit('python', data)
+                    // reset the condition
+                    data.python = false
 
-                // reset the condition
-                data.python = false
-
-                // write the file to change the condition
-                setTimeout(() => {
+                    // write the file to change the condition
                     fs.writeFile('socketio/data.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
                         if (err) throw err
                     })
-                }, 20)
 
-            } else if (data.addDevices) {
-                console.log("device added")
+                } else if (data.addDevices) {
+                    console.log("device added")
 
-                data.addDevices = false
+                    data.addDevices = false
 
-                // write the file to change the condition
-                fs.writeFile('socketio/data.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
-                    if (err) throw err
-                })
+                    // write the file to change the condition
+                    fs.writeFile('socketio/data.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
+                        if (err) throw err
+                    })
 
-                // set a timeout to be sure that the file is read from the view after it has been written
-                setTimeout(() => {
-                    client.emit('addDevices')
-                }, 20)
+                    // set a timeout to be sure that the file is read from the view after it has been written
+                    setTimeout(() => {
+                        client.emit('addDevices')
+                    }, 20)
 
-            } else if (data.deleteDevices) {
-                console.log("device deleted")
+                } else if (data.deleteDevices) {
+                    console.log("device deleted")
 
-                data.deleteDevices = false
+                    data.deleteDevices = false
 
-                // write the file to change the condition
-                fs.writeFile('socketio/data.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
-                    if (err) throw err
-                })
+                    // write the file to change the condition
+                    fs.writeFile('socketio/data.json', JSON.stringify(data, null, 2), 'utf-8', function(err) {
+                        if (err) throw err
+                    })
 
-                // set a timeout to be sure that the file is read from the view after it has been written
-                setTimeout(() => {
-                    client.emit('deleteDevices')
-                }, 20)
-            }
-        })
+                    // set a timeout to be sure that the file is read from the view after it has been written
+                    setTimeout(() => {
+                        client.emit('deleteDevices')
+                    }, 20)
+                }
+            })
+        }, 20);
     })
 
     // listen 'click' event from client

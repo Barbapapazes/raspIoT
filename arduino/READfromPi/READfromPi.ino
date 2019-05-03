@@ -1,8 +1,6 @@
 /**
  * Exemple de code pour la bibliothèque VirtualWire – Client d'envoi de structure
  */
- //D12
- 
 #include <VirtualWire.h>
 
 typedef struct {
@@ -34,6 +32,6 @@ void loop() {
   //Pour s'assurer que le message est bien reçu, on l'envoie plusieurs fois
   for (int i = 0; i < 2 ; i++) {
       vw_send((byte*) &message, sizeof(message)); // On envoie le message
-  vw_wait_tx(); // On attend la fin de l'envoi
+  vw_wait_tx(); // On attend la fin de l'envoi sur le pin 12
   }
 } 
