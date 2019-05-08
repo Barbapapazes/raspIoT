@@ -15,7 +15,6 @@ void setup() {
   // Vous pouvez changez les broches RX/TX/PTT avant vw_setup() si nécessaire
   vw_setup(2000);
   
-  Serial.println("Go !"); 
 }
  
 void loop() {

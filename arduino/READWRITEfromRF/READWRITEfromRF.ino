@@ -15,14 +15,13 @@ void setup() {
   vw_setup(2000);
   vw_rx_start(); // On peut maintenant recevoir des messages sur le Pin 11
 
-  for (int i = 2; i < 6; i++) {
-    pinMode(i, OUTPUT);
-    digitalWrite(i, LOW);
-  }
+    pinMode(8, OUTPUT);
+    digitalWrite(8, LOW);
 
-  pinMode(PINBUTTON, INPUT_PULLUP);
+
+  pinMode(PINBUTTON, INPUT);
   
-  Serial.println("Go !"); 
+  //Serial.println("Go !"); 
 }
 
 bool previousStateButton = digitalRead(PINBUTTON);
@@ -47,17 +46,12 @@ void loop() {
   // On attend de recevoir un message donc prgm est bloquant, si on le retire, alors n'est plus bloquant
   //vw_wait_rx();
   newStateButton = digitalRead(PINBUTTON);
+
   if (vw_get_message((byte *) &message, &taille_message)) {
     
     numBulb = message.commande;
     previousStateBulb = newStateBulb;
     newStateBulb = message.valeur;
-    
-
-    /*Serial.print("commande="); // Affiche le message
-    Serial.print(message.commande);
-    Serial.print(" valeur=");
-    Serial.println(message.valeur);*/
     
   } else if (previousStateButton != newStateButton) {
     
@@ -69,16 +63,8 @@ void loop() {
       
   }
   if (previousStateBulb != newStateBulb) {
-    Serial.print("*****  ");
-    Serial.print(counter);
-    Serial.println("  *****");
-    Serial.println("Before: ");
-    Serial.print("Previous ");
-    Serial.println(previousStateBulb);
-    Serial.print("New ");
-    Serial.println(newStateBulb);
     
-    digitalWrite(numBulb + 2, newStateBulb);
+    digitalWrite(numBulb + 8, newStateBulb);
     previousStateBulb = newStateBulb;
 
     message.commande = numBulb;
@@ -89,13 +75,5 @@ void loop() {
       vw_send((byte*) &message, sizeof(message)); // On envoie le message
   vw_wait_tx(); // On attend la fin de l'envoi sur le pin 12
   }
-    
-    Serial.println("After: ");
-    Serial.print("Previous ");
-    Serial.println(previousStateBulb);
-    Serial.print("New ");
-    Serial.println(newStateBulb);
-    counter++;
-
   }
 }

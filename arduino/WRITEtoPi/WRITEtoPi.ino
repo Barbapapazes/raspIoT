@@ -15,6 +15,9 @@ void setup() {
   // Vous pouvez changez les broches RX/TX/PTT avant vw_setup() si nécessaire
   vw_setup(2000);
   vw_rx_start(); // On peut maintenant recevoir des messages sur le Pin 11
+  pinMode(8, OUTPUT);
+  digitalWrite(8, LOW);
+  //Serial.println("Go");
 }
 
 void loop() {
@@ -30,17 +33,19 @@ void loop() {
    */
 
   // On attend de recevoir un message donc prgm est bloquant, si on le retire, alors n'est plus bloquant
-  vw_wait_rx();
+  //vw_wait_rx();
   
   if (vw_get_message((byte *) &message, &taille_message)) {
     
 
     //Serial.print("commande="); // Affiche le message
     //Serial.println("*** Commande ***");
-    Serial.println(message.commande);
+    //Serial.println(message.commande);
     //Serial.print(" valeur=");
     //Serial.println("*** Valeur ***");
     Serial.println(message.valeur);
-    
+    digitalWrite(8, HIGH);
+    delay(20);
   }
+  digitalWrite(8, LOW);
 }

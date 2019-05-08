@@ -4,18 +4,6 @@
     {
       "name": "one",
       "state": false
-    },
-    {
-      "name": "three",
-      "state": false
-    },
-    {
-      "name": "Two",
-      "state": false
-    },
-    {
-      "name": "Three",
-      "state": true
     }
   ],
   "deleteDevices": false,
