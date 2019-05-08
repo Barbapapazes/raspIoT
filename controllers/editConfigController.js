@@ -25,6 +25,11 @@ exports.editConfig_add_post = [
     // Sanitize (trim and escape) the name field.
     sanitizeBody('nameinput').trim().escape(),
 
+    body('idinput', 'ID required').isLength({ min: 5 }).withMessage("Incorrect ID").trim(),
+
+    // Sanitize (trim and escape) the name field.
+    sanitizeBody('idinput').trim(),
+
     // Validate that the state field have a correct value.
     body('stateinput', 'Please define the state').isIn(['false', 'true']).withMessage('Please use predefined values'),
 
@@ -73,6 +78,7 @@ exports.editConfig_add_post = [
 
                 file.bulbs[file.bulbs.length] = {
                     name: req.body.nameinput,
+                    id: req.body.idinput,
                     state: JSON.parse(req.body.stateinput)
                 }
 

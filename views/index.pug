@@ -6,6 +6,7 @@ block content
       - var i = 0
       each bulb in bulbs.bulbs
         label(for=bulb.name class="bulb")
+          p(class="name") #{bulb.name}
           i.fa.fa-lightbulb.bulb__img
           input(type="checkbox" id=bulb.name class="chkBulb" data-num=i)
         - i++

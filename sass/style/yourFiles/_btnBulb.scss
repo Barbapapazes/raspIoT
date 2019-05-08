@@ -1,4 +1,8 @@
 .bulb {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     margin: 20px;
     cursor: pointer;
@@ -7,5 +11,8 @@
     }
     &__img {
         font-size: 10rem;
+    }
+    .name {
+        text-transform: uppercase;
     }
 }

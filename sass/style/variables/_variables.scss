@@ -107,6 +107,9 @@ Mixins
                 color: $color-bulb-light;
             }
         }
+        .name {
+            color: $color;
+        }
     }
     .add-device {
         fieldset {
