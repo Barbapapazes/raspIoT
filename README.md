@@ -1,22 +1,22 @@
 **1st year project, INSA CVL | 2019**
 
-#RaspIoT
+# RaspIoT
 
-##Getting Started
+## Getting Started
 
 run the app:
 SET DEBUG=raspiot:* & npm run devstart
 marquer ce que l'on doit installer, les étapes and co
 
-##Goals
+## Goals
 
 Successfully light a lamp remotely via a web interface (see diagram below)
 
 ![Alt text](IMG-git/conception-finale.png "Conception Finale")
 
-##Specifications:
+## Specifications:
 
-#Creations:
+### Creations:
 
 * Creation of the web interface
 * Server creation
