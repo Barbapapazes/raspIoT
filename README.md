@@ -22,7 +22,7 @@ Successfully light a lamp remotely via a web interface (see diagram below)
 * Server creation
 * Creation of lamps
 
-#Use:
+# Use:
 
 The user can change the status of a lamp via his web browser
 The user can change the state of a lamp via a conventional switch

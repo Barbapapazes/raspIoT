@@ -1,12 +1,12 @@
 {
-  "addDevices": true,
+  "addDevices": false,
   "bulbs": [
     {
       "name": "First",
       "id": "5tyUI",
-      "state": false
+      "state": true
     }
   ],
-  "deleteDevices": true,
+  "deleteDevices": false,
   "python": false
 }
