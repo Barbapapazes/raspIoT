@@ -84,14 +84,16 @@ When on the home page, where the set of lamps is located, the user interacts wit
 #### Operation
 
 **Hardware**
+
 The Raspberry Pi is a microcomputer, like your tower or your laptop, running with a PC OS, and not mobile. On ARM architecture, it is therefore not very powerful but largely enough to serve as server and above all consumes much less than a real dedicated server. Its cost is also very interesting for this type of project. It was therefore indispensable to our project.
 The arduino, programmable low cost electronic card, is also part of the indispensable for this kind of project. It allows to control different components quite simply and in very effective ways.
 I invite you to read wiki for more information.
 
 **Software**
+
 NodeJS is an open-source javascript environment, real-time cross-platform running outside the browser, on the server side. Why did you choose NodeJS to build the server instead of PHP or Python? For several reasons. First of all, after learning javascript on the client side, continuing on Node JS allows you to avoid having to relearn a new language. Then, with regard to Python, we did not know how it worked and especially the abilities it had. Then for PHP, it's more complex. Indeed, NodeJS creates its own server whereas PHP needs a server to work, Apache for example. The concern is that the OS Raspberry Pi is quite special and therefore the software is often not optimized to work properly. And this is the case of PHP which has a lot of trouble running on Raspbian, unlike NodeJS which is cross-platform by definition perfectly compatible.
 
-    The dependencies of NodeJS:
+The dependencies of NodeJS:
 * express: allows you to create a server and manage its elements effectively
 * socketio: allows the use of websockets, or at least a two-way communication in real time
 * chokidar: to monitor file modification
@@ -99,7 +101,7 @@ NodeJS is an open-source javascript environment, real-time cross-platform runnin
 * pug: template engine to generate HTML pages
 * express-validator: to manage the sending of data by the user
 
-###Problems encountered
+### Problems encountered
 
 Many.
 First of all, the RaspIoT project does not come from the internet. There is no tutorial to redo what has been done from beginning to end. Therefore, and "happily", otherwise the project loses its meaning, everything has been written and reflected by the MULTI-TAKES team.
