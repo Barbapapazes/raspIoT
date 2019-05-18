@@ -159,3 +159,42 @@ It seemed simple, but proved complex. Indeed, we did not expect all these type c
 
 ## Arduino
 
+### Goal
+
+Transmit a change of state of the lamp from the server to the lamp, but also from the lamp to the server, via the use of RF module.
+
+### Use cases
+
+#### Example 1: From Web to Real
+
+When a customer changes the status of the lamp via the web app, then this change must be sent to the lamp. For this information goes through a python script, then is sent through the serial port and is received by the Arduino, (connected to the server). The program is quite simple, when he receives a message, he sends it through an RF module. The arduino on the lamp catches it and according to the message, changes the state of the lamp.
+
+#### Example 2: From Real to Web
+
+When a customer changes the state of the lamp via the physical switch, the latter changes state. But a message, in RF is also sent to a second arduino connected to the server. When the second arduino, connected to the server receives a message, it verifies it then sends it via the serial port to a python script which deals with it.
+
+### Design
+
+#### Technologies used
+
+**Hardware**
+3 arduino
+
+**Software**
+* C / C ++
+  * VirtuelWire
+
+### Operation
+
+**Hardware**
+Uses serial ports to communicate with the server and RF modules to communicate with other arduinos.
+
+**Software**
+Nothing special, except the VirtualWire library that can effectively manage RF modules.
+
+### Problems encountered
+
+The RF modules were the most complex part of this part. How to make them work? The bookstores are very rare but fortunately, not the tutorials, so we followed many tutorials, read the entire document of the 2 libraries that we had found, and then we started. We have suffered a great deal of failure, be it the very operation of the transceivers or errors in the writing of the programs. Then after a functional V1, the result was not satisfactory. The transmission time was too long and the sending did not allow too many possibilities. So we started all over again, research, analysis, creation. Then we arrived at a perfectly functional V2.
+
+### Feel about this work
+The most complicated thing was to operate the RF modules. Indeed, it's really not easy and we had to read and try dozens of tutorials. It was very long but very interesting to see the evolution of the system.
