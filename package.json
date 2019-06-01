@@ -3,7 +3,7 @@
     "version": "0.0.2",
     "private": true,
     "scripts": {
-        "devstart": "nodemon ./bin/www",
+        "dev": "nodemon ./bin/www",
         "start": "node ./bin/www",
         "scss-watch": "sass  --watch sass:public/stylesheets --style compressed",
         "scss-compile": "sass --update sass:public/stylesheets --style compressed"

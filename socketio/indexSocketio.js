@@ -6,17 +6,17 @@ exports.click = function(data) {
     // send the new state to all client
     this.broadcast.emit('click', data);
 
-    console.log(data.num)
+    console.log(data)
     let options = {
         mode: 'text',
         args: [data.num, (data.state == true ? "1" : "0")]
     }
 
-    PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
+    /*PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
         if (err) throw err;
         // results is an array consisting of messages collected during execution
         console.log('script done!');
-    })
+    })*/
 
     // update the data file when a client click on a bulb
     fs.readFile('socketio/data.json', 'utf-8', function(err, content) {

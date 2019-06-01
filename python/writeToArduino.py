@@ -6,14 +6,16 @@ import time    # to manage time
 # For Linux
 #ser = serial.Serial('/dev/ttyUSB0', 9600)
 # For Windows
-ser = serial.Serial('COM7', 9600)
+ser = serial.Serial('COM4', 9600)
 
 # We write in the serial console of the Arduino the values passed in parameter during the execution of the command
 
 val1 = (sys.argv[1]).encode('utf-8')
+print(type(sys.argv[1]))
 print(type(val1))
 print(val1)
 val2 = (sys.argv[2]).encode('utf-8')
+print(type(sys.argv[2]))
 print(type(val2))
 print(val2)
 
@@ -22,7 +24,7 @@ val = val1 + (' ').encode('utf-8') + val2 + (' ').encode('utf-8')
 print(val)
 
 # We send the value
-ser.write(val)
+ser.write(('azertY 1 0').encode())
 
 # To prevent the Arduino from resetting during the sending of the data, a capacitor 104 must be placed between the GND and the RST
 

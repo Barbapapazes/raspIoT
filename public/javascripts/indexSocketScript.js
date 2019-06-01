@@ -20,7 +20,7 @@ chks.forEach(element => {
         // take the image
         bulb = this.parentElement.firstElementChild
             // take the data (num) which is inside the HTML tag
-        let data = { num: this.dataset.num, state: undefined }
+        let data = { num: this.dataset.num, state: undefined, id: this.dataset.id }
         if (this.checked) {
             data.state = true
             bulb.classList.add('light')
