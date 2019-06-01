@@ -6,11 +6,11 @@ exports.click = function(data) {
     // send the new state to all client
     this.broadcast.emit('click', data);
 
-    console.log(data)
     let options = {
         mode: 'text',
-        args: [data.num, (data.state == true ? "1" : "0")]
+        args: [data.id, (data.state == true ? "1" : "0"), "0"]
     }
+    console.log(options.args)
 
     /*PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
         if (err) throw err;

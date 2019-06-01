@@ -1,18 +1,19 @@
-/**
- * Exemple de code pour la bibliothèque VirtualWire – Client d'envoi de structure
- */
 #include <VirtualWire.h>
 
+// enum de filtrages
+typedef enum {SERVER = 0, CLIENT} Emitter;
+
+// Struct de data
 typedef struct {
-  int commande;
-  int valeur;
+  int state;
+  Emitter emitter;
+  byte id_TXRX[6];
 } MaStructure;
 
 void setup() {
   Serial.begin(9600);
 
   // Initialisation de la bibliothèque VirtualWire
-  // Vous pouvez changez les broches RX/TX/PTT avant vw_setup() si nécessaire
   vw_setup(2000);
   
 }
@@ -20,13 +21,18 @@ void setup() {
 void loop() {
   MaStructure message;
   
-  // Lit un nombre depuis le port série
-  while(!Serial.available()); // Attend un caractère
-     message.commande = Serial.parseInt();
-  // Lit un nombre depuis le port série
-  while(!Serial.available()); // Attend un caractère
-     message.valeur = Serial.parseInt();
-  while(Serial.read() != -1);
+  // init variables
+  message.state = -1;
+  for (int  i = 0 ; i < 6 ; i++)
+  {
+    message.id_TXRX[i] = 0;
+  }
+
+  while(!Serial.available()); // tourne en boucle tand que il n'y a rien dans le buffer
+  Serial.readBytes(message.id_TXRX, 6); // lit 6 bytes du buffer
+  message.state = Serial.parseInt(); // parseInt() returns the first valid (long) integer number from the serial buffer. Characters that are not integers (or the minus sign) are skipped.
+  message.emitter = Serial.parseInt();
+  while(Serial.read() != -1); // vide le buffer
 
   //Pour s'assurer que le message est bien reçu, on l'envoie plusieurs fois
   for (int i = 0; i < 2 ; i++) {

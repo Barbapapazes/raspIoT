@@ -10,21 +10,28 @@ ser = serial.Serial('COM4', 9600)
 
 # We write in the serial console of the Arduino the values passed in parameter during the execution of the command
 
+# Bulb id
 val1 = (sys.argv[1]).encode('utf-8')
 print(type(sys.argv[1]))
 print(type(val1))
 print(val1)
+# Bulb state
 val2 = (sys.argv[2]).encode('utf-8')
 print(type(sys.argv[2]))
 print(type(val2))
 print(val2)
+# Emitter
+val3 = (sys.argv[3]).encode('utf-8')
+print(type(sys.argv[3]))
+print(type(val3))
+print(val3)
 
-# We combine the 2 values to match the expectations of the Arduino
-val = val1 + (' ').encode('utf-8') + val2 + (' ').encode('utf-8')
+# We combine the 3 values to match the expectations of the Arduino
+val = val1 + (' ').encode('utf-8') + val2 + (' ').encode('utf-8') + val3 + (' ').encode('utf-8')
 print(val)
 
 # We send the value
-ser.write(('azertY 1 0').encode())
+ser.write(val)
 
 # To prevent the Arduino from resetting during the sending of the data, a capacitor 104 must be placed between the GND and the RST
 
