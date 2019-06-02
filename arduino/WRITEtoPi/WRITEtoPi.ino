@@ -1,11 +1,11 @@
-/*
- * Read data from Arduino and send it to the Pi, through Arduino
-*/
 #include <VirtualWire.h>
 
+typedef enum {SERVER = 0, CLIENT} Emitter;
+
 typedef struct {
-  int commande;
-  int valeur;
+  int state;
+  Emitter emitter;
+  byte id_TXRX[6];
 } MaStructure;
 
 void setup() {
@@ -37,15 +37,24 @@ void loop() {
   
   if (vw_get_message((byte *) &message, &taille_message)) {
     
-
-    //Serial.print("commande="); // Affiche le message
-    //Serial.println("*** Commande ***");
-    //Serial.println(message.commande);
-    //Serial.print(" valeur=");
-    //Serial.println("*** Valeur ***");
-    Serial.println(message.valeur);
+  if (message.emitter == CLIENT) {
+    for (int  i = 0 ; i < 6 ; i++)
+    {
+      Serial.print(message.id_TXRX[i]);
+    }
+    Serial.println("");
+    Serial.print("State: ");
+    Serial.println(message.state);
+    Serial.print("Emitter: ");
+    Serial.println(message.emitter);
     digitalWrite(8, HIGH);
     delay(20);
+  } else {
+    Serial.println("From SERVER");
+  }
+     
+    
+    
   }
   digitalWrite(8, LOW);
 }

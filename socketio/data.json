@@ -4,12 +4,12 @@
     {
       "id": "azertY",
       "name": "First",
-      "state": true
+      "state": false
     },
     {
       "name": "four",
       "id": "AZERTy",
-      "state": true
+      "state": false
     }
   ],
   "deleteDevices": false,
