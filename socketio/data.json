@@ -4,11 +4,11 @@
     {
       "id": "azertY",
       "name": "First",
-      "state": false
+      "state": true
     },
     {
-      "name": "four",
       "id": "AZERTy",
+      "name": "four",
       "state": false
     }
   ],

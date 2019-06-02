@@ -42,15 +42,14 @@ void loop() {
     {
       Serial.print(message.id_TXRX[i]);
     }
-    Serial.println("");
-    Serial.print("State: ");
-    Serial.println(message.state);
-    Serial.print("Emitter: ");
-    Serial.println(message.emitter);
+    
+    Serial.print(" ");
+    Serial.print(message.state);
+    Serial.print(" ");
+    Serial.print(message.emitter);
+    Serial.println(" ");
     digitalWrite(8, HIGH);
     delay(20);
-  } else {
-    Serial.println("From SERVER");
   }
      
     

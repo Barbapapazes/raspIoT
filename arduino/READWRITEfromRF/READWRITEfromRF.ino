@@ -61,11 +61,11 @@ void loop() {
       Serial.print(message.id_TXRX[i]);
     }
     
-    Serial.println("");
-    Serial.print("State: ");
-    Serial.println(message.state);
-    Serial.print("Sender: ");
-    Serial.println(message.emitter);
+    Serial.print(" ");
+    Serial.print(message.state);
+    Serial.print(" ");
+    Serial.print(message.emitter);
+    Serial.print(" ");
 
     if (authenticated(id_Arduino, message.id_TXRX) && message.emitter == SERVER) {
 
