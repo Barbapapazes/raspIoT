@@ -25,7 +25,7 @@ exports.editConfig_add_post = [
     // Sanitize (trim and escape) the name field.
     sanitizeBody('nameinput').trim().escape(),
 
-    body('idinput', 'ID required').isLength({ min: 5 }).withMessage("Incorrect ID").trim(),
+    body('idinput', 'ID required').isLength({ min: 6, max: 6 }).withMessage("Incorrect ID, 6 characters").trim(),
 
     // Sanitize (trim and escape) the name field.
     sanitizeBody('idinput').trim(),

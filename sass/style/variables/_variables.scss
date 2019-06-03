@@ -34,7 +34,7 @@ $duration-med: 0.6s;
 $duration-long: 1s;
 // Border
 $border: 1px solid $color;
-$border-radius: 10px;
+$border-radius: 5px;
 // Mixins
 @mixin underscore($height) {
     transition: $duration-short;
@@ -113,6 +113,7 @@ Mixins
     }
     .add-device {
         fieldset {
+            border-radius: $border-radius;
             color: $color;
             border: 1px solid $color-header-background;
             input,
@@ -120,6 +121,7 @@ Mixins
                 background-color: $color-header-background;
                 border: none;
                 color: $color-text;
+                border-radius: $border-radius;
             }
         }
     }
@@ -140,6 +142,7 @@ Mixins
     }
     .button {
         button {
+            border-radius: $border-radius;
             color: $color-text;
             border: $border;
             background-color: $color-background;
