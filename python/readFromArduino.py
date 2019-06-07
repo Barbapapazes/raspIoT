@@ -8,9 +8,9 @@ import string  # to use string function
 # We wait data from the USB interface, to adapt according to the OS, at 9600 bauds
 
 # For Linux
-#ser = serial.Serial('/dev/ttyUSB0', 9600)
+ser = serial.Serial('/dev/ttyUSB0', 9600)
 # For Windows
-ser = serial.Serial('COM4', 9600)
+#ser = serial.Serial('COM4', 9600)
 
 val = 0
 
