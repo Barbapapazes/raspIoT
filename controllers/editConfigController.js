@@ -36,10 +36,18 @@ exports.editConfig_add_post = [
     // Sanitize (trim and escape) the state field.
     sanitizeBody('stateinput').trim().escape(),
 
+    // Validate that the type field have a correct value.
+    body('typeinput', 'Please define the state').isIn(['pwm', 'relay']).withMessage('Please use predefined values'),
+
+    // Sanitize (trim and escape) the type field.
+    sanitizeBody('typeinput').trim().escape(),
+
     // Process request after validation and sanitization.
     (req, res, next) => {
         // Extract the validation errors from a request.
-        const errors = validationResult(req);
+        const errors = validationResult(req)
+
+        console.log(req.body)
 
         let isInside
         fs.readFile('socketio/data.json', 'utf-8', function(err, file) {
@@ -75,12 +83,22 @@ exports.editConfig_add_post = [
 
             } else {
                 // Data from form is valid.
-
-                file.bulbs[file.bulbs.length] = {
-                    name: req.body.nameinput,
-                    id: req.body.idinput,
-                    state: JSON.parse(req.body.stateinput)
+                if (req.body.typeinput == 'relay') {
+                    file.bulbs[file.bulbs.length] = {
+                        name: req.body.nameinput,
+                        id: req.body.idinput,
+                        state: JSON.parse(req.body.stateinput),
+                        type: req.body.typeinput
+                    }
+                } else {
+                    file.bulbs[file.bulbs.length] = {
+                        name: req.body.nameinput,
+                        id: req.body.idinput,
+                        value: JSON.parse(req.body.stateinput) ? JSON.parse(100) : JSON.parse(0),
+                        type: req.body.typeinput
+                    }
                 }
+
 
                 // for the watcher in the index
                 file.addDevices = true

@@ -24,7 +24,15 @@ block content
                     select(name="stateinput", id="stateinput" required)
                         option(value="true") On
                         option(value="false" selected) Off
-                
+
+                .type-device
+                    label(for="typeinput")
+                        | Choose type of your device
+                        sup *
+                    select(name="typeinput", id="typeinput" required)
+                        option(value="relay" selected) relay
+                        option(value="pwm") pwm
+    
                 .button
                     button(type="submit") Add
                     button(type="reset") Erase

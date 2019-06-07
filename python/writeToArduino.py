@@ -25,9 +25,14 @@ val3 = (sys.argv[3]).encode('utf-8')
 print(type(sys.argv[3]))
 print(type(val3))
 print(val3)
+# Type
+val4 = (sys.argv[4]).encode('utf-8')
+print(type(sys.argv[4]))
+print(type(val4))
+print(val4)
 
-# We combine the 3 values to match the expectations of the Arduino
-val = val1 + (' ').encode('utf-8') + val2 + (' ').encode('utf-8') + val3 + (' ').encode('utf-8')
+# We combine the 4 values to match the expectations of the Arduino
+val = val1 + (' ').encode('utf-8') + val2 + (' ').encode('utf-8') + val3 + (' ').encode('utf-8') + val4 + (' ').encode('utf-8')
 print(val)
 
 # We send the value

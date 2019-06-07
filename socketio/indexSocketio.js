@@ -6,9 +6,15 @@ exports.click = function(data) {
     // send the new state to all client
     this.broadcast.emit('click', data);
 
+    // id | state/value | emitter | types 
+    if (data.type == 'relay')
+        args = [data.id, (data.state == true ? "1" : "0"), "0", "0"]
+    else
+        args = [data.id, String(data.value), "0", "1"]
+
     let options = {
         mode: 'text',
-        args: [data.id, (data.state == true ? "1" : "0"), "0"]
+        args: args
     }
     console.log(options.args)
 
@@ -23,7 +29,12 @@ exports.click = function(data) {
         if (err) throw err
 
         content = JSON.parse(content)
-        content.bulbs[data.num].state = data.state
+        console.log(data)
+        if (data.type == "relay") {
+            content.bulbs[data.num].state = data.state
+        } else {
+            content.bulbs[data.num].value = data.value
+        }
 
         fs.writeFile('socketio/data.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {
             if (err) throw err

@@ -2,12 +2,14 @@
 
 // enum de filtrages
 typedef enum {SERVER = 0, CLIENT} Emitter;
+typedef enum {RELAY = 0, PWM} Type;
 
 // Struct de data
 typedef struct {
+  byte id_TXRX[6];
   int state;
   Emitter emitter;
-  byte id_TXRX[6];
+  Type type;
 } MaStructure;
 
 void setup() {
@@ -32,11 +34,12 @@ void loop() {
   Serial.readBytes(message.id_TXRX, 6); // lit 6 bytes du buffer
   message.state = Serial.parseInt(); // parseInt() returns the first valid (long) integer number from the serial buffer. Characters that are not integers (or the minus sign) are skipped.
   message.emitter = Serial.parseInt();
+  message.type = Serial.parseInt();
   while(Serial.read() != -1); // vide le buffer
 
   //Pour s'assurer que le message est bien reçu, on l'envoie plusieurs fois
-  for (int i = 0; i < 2 ; i++) {
+  //for (int i = 0; i < 2 ; i++) {
       vw_send((byte*) &message, sizeof(message)); // On envoie le message
   vw_wait_tx(); // On attend la fin de l'envoi sur le pin 12
-  }
+  //}
 } 

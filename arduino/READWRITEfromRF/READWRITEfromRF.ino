@@ -1,16 +1,19 @@
 #include <VirtualWire.h>
 
-// ID de l'arduino
-const byte id_Arduino[] = {97,122,101,114,116,89};
+// ID de l'arduino AZERTy
+const byte id_Arduino[] = {65,90,69,82,84,121};
 
 #define PINBUTTON 7
 
 typedef enum {SERVER = 0, CLIENT} Emitter;
+typedef enum {RELAY = 0, PWM} Type;
 
+// Struct de data
 typedef struct {
+  byte id_TXRX[6];
   int state;
   Emitter emitter;
-  byte id_TXRX[6];
+  Type type;
 } MaStructure;
 
 // fonction pour vérifier la correspondance entre l'id du message et celle de l'arduino
@@ -26,6 +29,8 @@ void setup() {
 
   pinMode(8, OUTPUT);
   digitalWrite(8, LOW);
+  pinMode(3, OUTPUT);
+  analogWrite(3, 0);
 
 
   pinMode(PINBUTTON, INPUT);
@@ -40,9 +45,9 @@ bool newStateBulb = 0;
 void loop() {
   MaStructure message;
 
-  for (int i = 0 ; i < 6 ; i++) {
+  /*for (int i = 0 ; i < 6 ; i++) {
     message.id_TXRX[i] = id_Arduino[i];
-  }
+  }*/
   byte taille_message = sizeof(MaStructure);
 
   /* 
@@ -66,13 +71,22 @@ void loop() {
     Serial.print(" ");
     Serial.print(message.emitter);
     Serial.print(" ");
-
+    Serial.print(message.type);
+    Serial.print(" ");
+    Serial.println("");
+    
     if (authenticated(id_Arduino, message.id_TXRX) && message.emitter == SERVER) {
+      
+      if (message.type == RELAY) {
+        previousStateBulb = newStateBulb;
+        newStateBulb = message.state;
+        digitalWrite(8, newStateBulb);
+      } else if (message.type == PWM) {
+        int intensity = map(message.state, 0, 100, 0, 255);
+        analogWrite(3, intensity);
+      }
 
-      previousStateBulb = newStateBulb;
-      newStateBulb = message.state;
-
-      digitalWrite(8, newStateBulb);
+      
     }
 
   } else if (previousStateButton != newStateButton) {
@@ -100,6 +114,8 @@ void loop() {
     Serial.println(message.state);
     Serial.print("Sender: ");
     Serial.println(message.emitter);
+    Serial.print("Type: ");
+    //Serial.println(message.type);
     
 
     //Pour s'assurer que le message est bien reçu, on l'envoie plusieurs fois

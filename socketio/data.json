@@ -1,12 +1,31 @@
 {
-  "addDevices": true,
+  "addDevices": false,
   "bulbs": [
     {
-      "id": "azertY",
-      "name": "First",
-      "state": false
+      "name": "one",
+      "id": "AZERTy",
+      "state": false,
+      "type": "relay"
+    },
+    {
+      "name": "two",
+      "id": "AZERTy",
+      "value": 100,
+      "type": "pwm"
+    },
+    {
+      "name": "three",
+      "id": "azerfd",
+      "state": false,
+      "type": "relay"
+    },
+    {
+      "name": "four",
+      "id": "asdcvg",
+      "value": 79,
+      "type": "pwm"
     }
   ],
-  "deleteDevices": true,
+  "deleteDevices": false,
   "python": false
 }
