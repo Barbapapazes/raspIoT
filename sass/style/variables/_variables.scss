@@ -110,6 +110,67 @@ Mixins
         .name {
             color: $color;
         }
+        input[type=range] {
+            background-color: $color-background;
+            &:focus {
+                &::-webkit-slider-runnable-track {
+                    background: $color-header-background;
+                }
+                &::-ms-fill-lower {
+                    background: $color-header-background;
+                }
+                &::-ms-fill-upper {
+                    background: $color-header-background;
+                }
+            }
+            &::-webkit-slider-runnable-track {
+                box-shadow: 0px 0px 0px #000000;
+                background: $color-header-background;
+                border-radius: $border-radius;
+                border: 0px solid #000000;
+            }
+            &::-webkit-slider-thumb {
+                box-shadow: 0px 0px 0px #000000;
+                border: 0px solid #000000;
+                border-radius: $border-radius;
+                background: $color;
+            }
+            &::-moz-range-track {
+                box-shadow: 0px 0px 0px #000000;
+                background: $color-header-background;
+                border-radius: $border-radius;
+                border: 0px solid #000000;
+            }
+            &::-moz-range-thumb {
+                box-shadow: 0px 0px 0px #000000;
+                border: 0px solid #000000;
+                border-radius: $border-radius;
+                background: $color;
+            }
+            &::-ms-track {
+                background: transparent;
+                border-color: transparent;
+                color: transparent;
+            }
+            &::-ms-fill-lower {
+                background: $color-header-background;
+                border: 0px solid #000000;
+                border-radius: $border-radius;
+                box-shadow: 0px 0px 0px #000000;
+            }
+            &::-ms-fill-upper {
+                background: $color-header-background;
+                border: 0px solid #000000;
+                border-radius: $border-radius;
+                box-shadow: 0px 0px 0px #000000;
+            }
+            &::-ms-thumb {
+                box-shadow: 0px 0px 0px #000000;
+                border: 0px solid #000000;
+                border-radius: $border-radius;
+                background: $color;
+            }
+        }
     }
     .add-device {
         fieldset {

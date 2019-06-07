@@ -4,25 +4,25 @@
     {
       "name": "one",
       "id": "AZERTy",
-      "state": false,
+      "state": true,
       "type": "relay"
     },
     {
       "name": "two",
       "id": "AZERTy",
-      "value": 100,
+      "value": 36,
       "type": "pwm"
     },
     {
       "name": "three",
       "id": "azerfd",
-      "state": false,
+      "state": true,
       "type": "relay"
     },
     {
       "name": "four",
       "id": "asdcvg",
-      "value": 79,
+      "value": 45,
       "type": "pwm"
     }
   ],
