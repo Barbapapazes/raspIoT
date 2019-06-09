@@ -50,8 +50,8 @@ rangeBulb.forEach(element => {
 let rangeRGB = document.querySelectorAll('.rangeRGB')
 
 rangeRGB.forEach(element => {
-    element.addEventListener('click', function() {
-        bulb = this.parentElement.firstElementChild
+    element.addEventListener('input', function() {
+        bulb = this.parentElement.firstElementChild.firstElementChild
         let rgb = (bulb.style.color).replace(/[rgb(),]/g, '').split(' ')
         let rgbNum = []
         for (let index = 0; index < rgb.length; index++) {
@@ -80,6 +80,10 @@ rangeRGB.forEach(element => {
 
         bulb.style.color = `rgb(${255*(red/100)}, ${255*(green/100)}, ${255*(blue/100)})`
     })
+    element.addEventListener('click', function() {
+        let data = { type: 'pwm-rgb' }
+        socket.emit('click', data)
+    })
 })
 
 var bulbs = document.querySelectorAll('.bulb__img')
@@ -94,7 +98,7 @@ socket.on('click', function(data) {
             that.classList.add('light')
         else
             that.classList.remove('light')
-    } else {
+    } else if (data.type == 'pwm') {
         that.parentElement.lastChild.value = data.value
         that.style.color = `rgb(${106*data.value/100}, ${153*data.value/100}, ${85*data.value/100})`
     }

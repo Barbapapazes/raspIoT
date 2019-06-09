@@ -11,7 +11,9 @@ exports.click = function(data) {
         args = [data.id, (data.state == true ? "1" : "0"), "0", "0"]
     else if (data.type == 'pwm')
         args = [data.id, String(data.value), "0", "1"]
-
+    else if (data.type == 'pwm-rgb') {
+        args = []
+    }
     let options = {
         mode: 'text',
         args: args
@@ -34,7 +36,7 @@ exports.click = function(data) {
         console.log(data)
         if (data.type == "relay") {
             content.bulbs[data.num].state = data.state
-        } else {
+        } else if (data.type == 'pwm') {
             content.bulbs[data.num].value = data.value
         }
 
