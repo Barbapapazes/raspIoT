@@ -12,7 +12,7 @@ exports.click = function(data) {
     else if (data.type == 'pwm')
         args = [data.id, String(data.value), "0", "1"]
     else if (data.type == 'pwm-rgb') {
-        args = []
+        args = [data.id, String(data.R < 100 ? (data.R == 0 ?  "000": "0" + data.R): data.R) + String(data.G < 100 ? (data.G == 0 ?  "000": "0" + data.G) : data.G) + String(data.B < 100 ? (data.B == 0 ?  "000": "0" + data.B) : data.B), "0", "2"]
     }
     let options = {
         mode: 'text',
@@ -21,11 +21,11 @@ exports.click = function(data) {
     console.log(options.args)
 
 
-    /*PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
+    PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
         if (err) throw err;
         // results is an array consisting of messages collected during execution
         console.log('script done!');
-    })*/
+    })
 
 
     // update the data file when a client click on a bulb
@@ -38,6 +38,10 @@ exports.click = function(data) {
             content.bulbs[data.num].state = data.state
         } else if (data.type == 'pwm') {
             content.bulbs[data.num].value = data.value
+        } else if (data.type == 'pwm-rgb') {
+            content.bulbs[data.num].R = data.R
+            content.bulbs[data.num].G = data.G
+            content.bulbs[data.num].B = data.B
         }
 
         fs.writeFile('socketio/data.json', JSON.stringify(content, null, 2), 'utf-8', function(err) {

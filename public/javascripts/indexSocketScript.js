@@ -28,7 +28,7 @@ chks.forEach(element => {
             data.state = false
             bulb.classList.remove('light')
         }
-        console.log(data)
+        //console.log(data)
         socket.emit('click', data)
     });
 });
@@ -84,9 +84,9 @@ rangeRGB.forEach(element => {
         let data = { num: this.dataset.num, R: undefined, G: undefined, B: undefined, id: this.dataset.id, type: this.dataset.type }
         bulb = this.parentElement.firstElementChild
         let rgb = (bulb.style.color).replace(/[rgb(),]/g, '').split(' ')
-        data.R = Number(rgb[0]) / 255 * 100
-        data.G = Number(rgb[1]) / 255 * 100
-        data.B = Number(rgb[2]) / 255 * 100
+        data.R = Math.round(Number(rgb[0]) / 255 * 100)
+        data.G = Math.round(Number(rgb[1]) / 255 * 100)
+        data.B = Math.round(Number(rgb[2]) / 255 * 100)
 
         socket.emit('click', data)
     })
@@ -96,7 +96,7 @@ var bulbs = document.querySelectorAll('.bulb__img')
 
 // wait a event from the other client
 socket.on('click', function(data) {
-    console.log(data)
+    //console.log(data)
     let that = bulbs[data.num]
     if (data.type == 'relay') {
         that.parentElement.lastChild.checked = data.state

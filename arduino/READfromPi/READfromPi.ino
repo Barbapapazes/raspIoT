@@ -2,12 +2,12 @@
 
 // enum de filtrages
 typedef enum {SERVER = 0, CLIENT} Emitter;
-typedef enum {RELAY = 0, PWM} Type;
+typedef enum {RELAY = 0, PWM, PWM_RGB} Type;
 
 // Struct de data
 typedef struct {
   byte id_TXRX[6];
-  int state;
+  float state;
   Emitter emitter;
   Type type;
 } MaStructure;
@@ -32,7 +32,7 @@ void loop() {
 
   while(!Serial.available()); // tourne en boucle tand que il n'y a rien dans le buffer
   Serial.readBytes(message.id_TXRX, 6); // lit 6 bytes du buffer
-  message.state = Serial.parseInt(); // parseInt() returns the first valid (long) integer number from the serial buffer. Characters that are not integers (or the minus sign) are skipped.
+  message.state = Serial.parseFloat(); // parseInt() returns the first valid (long) integer number from the serial buffer. Characters that are not integers (or the minus sign) are skipped.
   message.emitter = Serial.parseInt();
   message.type = Serial.parseInt();
   while(Serial.read() != -1); // vide le buffer

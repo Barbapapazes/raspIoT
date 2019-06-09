@@ -6,12 +6,12 @@ const byte id_Arduino[] = {65,90,69,82,84,121};
 #define PINBUTTON 7
 
 typedef enum {SERVER = 0, CLIENT} Emitter;
-typedef enum {RELAY = 0, PWM} Type;
+typedef enum {RELAY = 0, PWM, PWM_RGB} Type;
 
 // Struct de data
 typedef struct {
   byte id_TXRX[6];
-  int state;
+  float state;
   Emitter emitter;
   Type type;
 } MaStructure;
@@ -31,6 +31,14 @@ void setup() {
   digitalWrite(8, LOW);
   pinMode(3, OUTPUT);
   analogWrite(3, 0);
+
+  //RGB
+  pinMode(5, OUTPUT);
+  analogWrite(5, 0);
+  pinMode(6, OUTPUT);
+  analogWrite(6, 0);
+  pinMode(10, OUTPUT);
+  analogWrite(10, 0);
 
 
   pinMode(PINBUTTON, INPUT);
@@ -79,11 +87,25 @@ void loop() {
       
       if (message.type == RELAY) {
         previousStateBulb = newStateBulb;
-        newStateBulb = message.state;
+        newStateBulb = (int)message.state;
         digitalWrite(8, newStateBulb);
+        Serial.println(newStateBulb);
       } else if (message.type == PWM) {
         int intensity = map(message.state, 0, 100, 0, 255);
         analogWrite(3, intensity);
+      } else if (message.type == PWM_RGB) {
+        int red = message.state / 1000000;
+        int green = (message.state - red * 1000000) / 1000;
+        int blue = message.state - red * 1000000 - green * 1000;
+        red = map(red, 0, 100, 0, 255);;
+        green = map(green, 0, 100, 0, 255);;
+        blue = map(blue, 0, 100, 0, 255);;
+
+        analogWrite(5, blue);
+
+        analogWrite(6, green);
+
+        analogWrite(10, red);
       }
 
       
@@ -115,7 +137,7 @@ void loop() {
     Serial.print("Sender: ");
     Serial.println(message.emitter);
     Serial.print("Type: ");
-    //Serial.println(message.type);
+    Serial.println(message.type);
     
 
     //Pour s'assurer que le message est bien reçu, on l'envoie plusieurs fois

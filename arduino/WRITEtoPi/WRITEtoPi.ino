@@ -3,7 +3,7 @@
 typedef enum {SERVER = 0, CLIENT} Emitter;
 
 typedef struct {
-  int state;
+  float state;
   Emitter emitter;
   byte id_TXRX[6];
 } MaStructure;
