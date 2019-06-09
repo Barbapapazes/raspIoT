@@ -37,7 +37,7 @@ exports.editConfig_add_post = [
     sanitizeBody('stateinput').trim().escape(),
 
     // Validate that the type field have a correct value.
-    body('typeinput', 'Please define the state').isIn(['pwm', 'relay']).withMessage('Please use predefined values'),
+    body('typeinput', 'Please define the state').isIn(['pwm', 'relay', 'pwm-rgb']).withMessage('Please use predefined values'),
 
     // Sanitize (trim and escape) the type field.
     sanitizeBody('typeinput').trim().escape(),
@@ -90,11 +90,20 @@ exports.editConfig_add_post = [
                         state: JSON.parse(req.body.stateinput),
                         type: req.body.typeinput
                     }
-                } else {
+                } else if (req.body.typeinput == 'pwm') {
                     file.bulbs[file.bulbs.length] = {
                         name: req.body.nameinput,
                         id: req.body.idinput,
                         value: JSON.parse(req.body.stateinput) ? JSON.parse(100) : JSON.parse(0),
+                        type: req.body.typeinput
+                    }
+                } else if (req.body.typeinput == 'pwm-rgb') {
+                    file.bulbs[file.bulbs.length] = {
+                        name: req.body.nameinput,
+                        id: req.body.idinput,
+                        R: JSON.parse(req.body.stateinput) ? JSON.parse(100) : JSON.parse(0),
+                        G: JSON.parse(req.body.stateinput) ? JSON.parse(100) : JSON.parse(0),
+                        B: JSON.parse(req.body.stateinput) ? JSON.parse(100) : JSON.parse(0),
                         type: req.body.typeinput
                     }
                 }

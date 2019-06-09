@@ -35,7 +35,6 @@ chks.forEach(element => {
 
 // selecte the range input
 let rangeBulb = document.querySelectorAll('.rangeBulb')
-console.log(rangeBulb)
 
 rangeBulb.forEach(element => {
     element.addEventListener('click', function() {
@@ -46,6 +45,42 @@ rangeBulb.forEach(element => {
         socket.emit('click', data)
     })
 });
+
+// select de rgb input
+let rangeRGB = document.querySelectorAll('.rangeRGB')
+
+rangeRGB.forEach(element => {
+    element.addEventListener('click', function() {
+        bulb = this.parentElement.firstElementChild
+        let rgb = (bulb.style.color).replace(/[rgb(),]/g, '').split(' ')
+        let rgbNum = []
+        for (let index = 0; index < rgb.length; index++) {
+            const element = rgb[index];
+            rgbNum[index] = Number(element) / 255 * 100
+        }
+
+
+        let red,
+            green,
+            blue
+
+        if (this.classList[1] == 'R') {
+            red = this.value
+            green = rgbNum[1]
+            blue = rgbNum[2]
+        } else if (this.classList[1] == 'G') {
+            red = rgbNum[0]
+            green = this.value
+            blue = rgbNum[2]
+        } else if (this.classList[1] == 'B') {
+            red = rgbNum[0]
+            green = rgbNum[1]
+            blue = this.value
+        }
+
+        bulb.style.color = `rgb(${255*(red/100)}, ${255*(green/100)}, ${255*(blue/100)})`
+    })
+})
 
 var bulbs = document.querySelectorAll('.bulb__img')
 

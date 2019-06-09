@@ -10,20 +10,24 @@
     {
       "name": "two",
       "id": "AZERTy",
-      "value": 36,
+      "value": 33,
       "type": "pwm"
     },
     {
-      "name": "three",
-      "id": "azerfd",
-      "state": true,
-      "type": "relay"
+      "name": "RGB",
+      "id": "AZERTy",
+      "R": 100,
+      "G": 100,
+      "B": 100,
+      "type": "pwm-rgb"
     },
     {
-      "name": "four",
-      "id": "asdcvg",
-      "value": 45,
-      "type": "pwm"
+      "name": "RGB 2",
+      "id": "AZERTy",
+      "R": 0,
+      "G": 0,
+      "B": 0,
+      "type": "pwm-rgb"
     }
   ],
   "deleteDevices": false,

@@ -9,7 +9,7 @@ exports.click = function(data) {
     // id | state/value | emitter | types 
     if (data.type == 'relay')
         args = [data.id, (data.state == true ? "1" : "0"), "0", "0"]
-    else
+    else if (data.type == 'pwm')
         args = [data.id, String(data.value), "0", "1"]
 
     let options = {
@@ -19,11 +19,11 @@ exports.click = function(data) {
     console.log(options.args)
 
 
-    PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
+    /*PythonShell.run('./python/writeToArduino.py', options, function(err, results) {
         if (err) throw err;
         // results is an array consisting of messages collected during execution
         console.log('script done!');
-    })
+    })*/
 
 
     // update the data file when a client click on a bulb

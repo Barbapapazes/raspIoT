@@ -10,11 +10,19 @@ block content
             i.fa.fa-lightbulb.bulb__img
             p(class="name") #{bulb.name}
             input(type="checkbox" id=bulb.name class="chkBulb" data-num=i data-id=bulb.id data-type=bulb.type)
-        else
+        else if (bulb.type == 'pwm')
           label(for=bulb.name class="bulb")
             i(class="fa fa-lightbulb bulb__img ", style={color: 'rgb(' + 106*(bulb.value/100) + ',' + 153*(bulb.value/100) + ',' + 85*(bulb.value/100) + ')'})
             p(class="name") #{bulb.name}
             input(type="range" id=bulb.name data-num=i class="rangeBulb" data-id=bulb.id data-type=bulb.type min="0" max="100" value=bulb.value )
+        else if (bulb.type == 'pwm-rgb')
+          .bulb
+            label(for=bulb.name class="bulb")
+              i(class="fa fa-lightbulb bulb__img ", style={color: 'rgb(' + 255*(bulb.R/100) + ',' + 255*(bulb.G/100) + ',' + 255*(bulb.B/100) + ')'})
+              p(class="name") #{bulb.name}
+            input(type="range" id=bulb.name data-num=i class="rangeRGB R" data-id=bulb.id data-type=bulb.type min="0" max="100" value=bulb.R )
+            input(type="range" id=bulb.name data-num=i class="rangeRGB G" data-id=bulb.id data-type=bulb.type min="0" max="100" value=bulb.G )
+            input(type="range" id=bulb.name data-num=i class="rangeRGB B" data-id=bulb.id data-type=bulb.type min="0" max="100" value=bulb.B )
         - i++
     else 
       .empty Nothing to show here ;-(  
