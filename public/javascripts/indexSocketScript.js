@@ -51,7 +51,7 @@ let rangeRGB = document.querySelectorAll('.rangeRGB')
 
 rangeRGB.forEach(element => {
     element.addEventListener('input', function() {
-        bulb = this.parentElement.firstElementChild.firstElementChild
+        bulb = this.parentElement.firstElementChild
         let rgb = (bulb.style.color).replace(/[rgb(),]/g, '').split(' ')
         let rgbNum = []
         for (let index = 0; index < rgb.length; index++) {
@@ -81,7 +81,13 @@ rangeRGB.forEach(element => {
         bulb.style.color = `rgb(${255*(red/100)}, ${255*(green/100)}, ${255*(blue/100)})`
     })
     element.addEventListener('click', function() {
-        let data = { type: 'pwm-rgb' }
+        let data = { num: this.dataset.num, R: undefined, G: undefined, B: undefined, id: this.dataset.id, type: this.dataset.type }
+        bulb = this.parentElement.firstElementChild
+        let rgb = (bulb.style.color).replace(/[rgb(),]/g, '').split(' ')
+        data.R = Number(rgb[0]) / 255 * 100
+        data.G = Number(rgb[1]) / 255 * 100
+        data.B = Number(rgb[2]) / 255 * 100
+
         socket.emit('click', data)
     })
 })
@@ -101,6 +107,11 @@ socket.on('click', function(data) {
     } else if (data.type == 'pwm') {
         that.parentElement.lastChild.value = data.value
         that.style.color = `rgb(${106*data.value/100}, ${153*data.value/100}, ${85*data.value/100})`
+    } else if (data.type == 'pwm-rgb') {
+        that.parentElement.childNodes[2].value = data.R
+        that.parentElement.childNodes[3].value = data.G
+        that.parentElement.childNodes[4].value = data.B
+        that.style.color = `rgb(${255*(data.R/100)}, ${255*(data.G/100)}, ${255*(data.B/100)})`
     }
 
 })

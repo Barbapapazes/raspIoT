@@ -129,6 +129,15 @@ Mixins
                 border-radius: $border-radius;
                 border: 0px solid #000000;
             }
+            &.rangeRGB.R::-webkit-slider-thumb {
+                background: red;
+            }
+            &.rangeRGB.G::-webkit-slider-thumb {
+                background: green;
+            }
+            &.rangeRGB.B::-webkit-slider-thumb {
+                background: blue;
+            }
             &::-webkit-slider-thumb {
                 box-shadow: 0px 0px 0px #000000;
                 border: 0px solid #000000;
@@ -140,6 +149,15 @@ Mixins
                 background: $color-header-background;
                 border-radius: $border-radius;
                 border: 0px solid #000000;
+            }
+            &.rangeRGB.R::-moz-range-thumb {
+                background: red;
+            }
+            &.rangeRGB.G::-moz-range-thumb {
+                background: green;
+            }
+            &.rangeRGB.B::-moz-range-thumb {
+                background: blue;
             }
             &::-moz-range-thumb {
                 box-shadow: 0px 0px 0px #000000;
@@ -164,11 +182,35 @@ Mixins
                 border-radius: $border-radius;
                 box-shadow: 0px 0px 0px #000000;
             }
+            &.rangeRGB.R::-ms-thumb {
+                background: red;
+            }
+            &.rangeRGB.G::-ms-thumb {
+                background: green;
+            }
+            &.rangeRGB.B::-ms-thumb {
+                background: blue;
+            }
             &::-ms-thumb {
                 box-shadow: 0px 0px 0px #000000;
                 border: 0px solid #000000;
                 border-radius: $border-radius;
                 background: $color;
+            }
+            &.rangeRGB.R::-webkit-slider-thumb,
+            &.rangeRGB.R::-moz-range-thumb,
+            &.rangeRGB.R::-ms-thumb {
+                background: red;
+            }
+            &.rangeRGB.G::-webkit-slider-thumb,
+            &.rangeRGB.G::-moz-range-thumb,
+            &.rangeRGB.G::-ms-thumb {
+                background: green;
+            }
+            &.rangeRGB.B::-webkit-slider-thumb,
+            &.rangeRGB.B::-moz-range-thumb,
+            &.rangeRGB.B::-ms-thumb {
+                background: blue;
             }
         }
     }
