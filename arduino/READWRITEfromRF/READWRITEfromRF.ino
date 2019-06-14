@@ -4,6 +4,7 @@
 const byte id_Arduino[] = {65,90,69,82,84,121};
 
 #define PINBUTTON 7
+#define REDLED 10
 
 typedef enum {SERVER = 0, CLIENT} Emitter;
 typedef enum {RELAY = 0, PWM, PWM_RGB} Type;
@@ -34,11 +35,11 @@ void setup() {
 
   //RGB
   pinMode(5, OUTPUT);
-  analogWrite(5, 0);
   pinMode(6, OUTPUT);
+  pinMode(REDLED, OUTPUT);
+  analogWrite(5, 0);
   analogWrite(6, 0);
-  pinMode(10, OUTPUT);
-  analogWrite(10, 0);
+  analogWrite(REDLED, 0);
 
 
   pinMode(PINBUTTON, INPUT);
@@ -97,15 +98,16 @@ void loop() {
         int red = message.state / 1000000;
         int green = (message.state - red * 1000000) / 1000;
         int blue = message.state - red * 1000000 - green * 1000;
-        red = map(red, 0, 100, 0, 255);;
-        green = map(green, 0, 100, 0, 255);;
-        blue = map(blue, 0, 100, 0, 255);;
+        red = map(red, 0, 100, 0, 255);
+        green = map(green, 0, 100, 0, 255);
+        blue = map(blue, 0, 100, 0, 255);
+        Serial.println(red);
+        analogWrite(REDLED, red);
 
         analogWrite(5, blue);
 
         analogWrite(6, green);
 
-        analogWrite(10, red);
       }
 
       

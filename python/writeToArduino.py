@@ -4,9 +4,9 @@ import time    # to manage time
 # We write in the USB interface, to adapt according to the OS, at 9600 bauds
 
 # For Linux
-#ser = serial.Serial('/dev/ttyUSB1', 9600)
+ser = serial.Serial('/dev/ttyUSB1', 9600)
 # For Windows
-ser = serial.Serial('COM8', 9600)
+#ser = serial.Serial('COM8', 9600)
 
 # We write in the serial console of the Arduino the values passed in parameter during the execution of the command
 

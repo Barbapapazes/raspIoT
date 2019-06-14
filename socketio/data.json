@@ -1,27 +1,26 @@
 {
-  "addDevices": false,
-  "bulbs": [
-    {
-      "name": "one",
-      "id": "AZERTy",
-      "state": false,
-      "type": "relay"
-    },
-    {
-      "name": "two",
-      "id": "AZERTy",
-      "value": 0,
-      "type": "pwm"
-    },
-    {
-      "name": "RGB",
-      "id": "AZERTy",
-      "R": 0,
-      "G": 100,
-      "B": 100,
-      "type": "pwm-rgb"
-    }
-  ],
-  "deleteDevices": false,
-  "python": false
+    "addDevices": false,
+    "bulbs": [{
+            "name": "one",
+            "id": "AZERTy",
+            "state": false,
+            "type": "relay"
+        },
+        {
+            "name": "two",
+            "id": "AZERTy",
+            "value": 65,
+            "type": "pwm"
+        },
+        {
+            "name": "RGB",
+            "id": "AZERTy",
+            "R": 53,
+            "G": 0,
+            "B": 0,
+            "type": "pwm-rgb"
+        }
+    ],
+    "deleteDevices": false,
+    "python": false
 }
