@@ -12,7 +12,7 @@ exports.click = function(data) {
     else if (data.type == 'pwm')
         args = [data.id, String(data.value), "0", "1"]
     else if (data.type == 'pwm-rgb') {
-        args = [data.id, String(data.R < 100 ? (data.R == 0 ?  "000": "0" + data.R): data.R) + String(data.G < 100 ? (data.G == 0 ?  "000": "0" + data.G) : data.G) + String(data.B < 100 ? (data.B == 0 ?  "000": "0" + data.B) : data.B), "0", "2"]
+        args = [data.id, String(data.R < 100 ? (data.R == 0 ? "000" : "0" + data.R) : data.R) + String(data.G < 100 ? (data.G == 0 ? "000" : "0" + data.G) : data.G) + String(data.B < 100 ? (data.B == 0 ? "000" : "0" + data.B) : data.B), "0", "2"]
     }
     let options = {
         mode: 'text',
